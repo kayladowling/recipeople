@@ -1,0 +1,22 @@
+{
+  "name": "recipeople",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr11-gremlin/recipeople.git"
+  },
+  "keywords": [
+    "recipeople"
+  ],
+  "author": "hrr11-gremlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrr11-gremlin/recipeople/issues"
+  },
+  "homepage": "https://github.com/hrr11-gremlin/recipeople#readme"
+}
