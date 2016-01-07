@@ -1,16 +1,27 @@
 {
   "name": "recipeople",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js",
+    "postinstall": "bower install"
+  },
+    "dependencies": {
+    "bower": "^1.7.2",
+    "express": "4.13.3"
+  },
+    "engines": {
+    "node": "5.2.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hrr11-gremlin/recipeople.git"
   },
   "keywords": [
+    "node",
+    "heroku",
+    "express",
     "recipeople"
   ],
   "author": "hrr11-gremlin",
