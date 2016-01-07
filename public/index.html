@@ -9,9 +9,19 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Recipeople</h1>
+    <div class="toolbar">
+      <ul>
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/profile">Profile</a></li>
+        <li><a href="#/settings">Settings</a></li>
+      </ul>
+    </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+    <div ng-view></div>
+
+    <!-- Scripts -->
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
