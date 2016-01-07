@@ -1,5 +1,5 @@
 # Project Name #
-
+Recipeople
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -18,27 +18,30 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+ Recipes for the people! Share the food you love with the people you love!
 
 ## Sub-Heading ##
+ 
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
+Hungry people will have less recipes to try and sort through to find a winner!
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-
 ## Problem ##
-  > Describe the problem your product solves.
+Deciding what to cook is hard. Don’t trust the internet, trust a friend.
+  > Describe the problem your product solves
 
-## Solution ##
+ ## Solution ##
   > Describe how your product elegantly solves the problem.
-
-## Quote from You ##
+ Recipes and recommendations will be generated based on the things your friends enjoy.
+  ## Quote from You ##
   > A quote from a spokesperson in your company.
-
+Our product makes it easy for our customers to find recipes they love and brings the personal touch back to cooking.
 ## How to Get Started ##
   > Describe how easy it is to get started.
-
+Sign in with your facebook account at Recipeople!
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
+My grandkids always went on those internets to find the marinara sauce recipes. But know with recipeople they cook my marinara everytime.
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+Until recently sharing recipes have always been a very personal thing to share. Something has been lost with the amount of recipes on the internet. Recipeople restores the bond between family and food. 
