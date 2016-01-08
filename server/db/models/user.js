@@ -8,6 +8,7 @@ var UserSchema = new Schema({
   disliked: Array,
   groups: Array,
   authored: Array,
+  testid: Number,
   friends: Array
 });
 
