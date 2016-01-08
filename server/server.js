@@ -7,7 +7,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 
-mongoose.connect('127.0.0.1:27017');
+mongoose.connect(process.env.MONGOLAB_URI);
 app.use('/', express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 
