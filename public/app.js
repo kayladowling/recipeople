@@ -5,6 +5,7 @@ angular.module('Recipeoples', [
   'Recipeoples.post',
 	'Recipeoples.recipe', 
 	'Recipeoples.group',
+  'Recipeoples.settings',
   'ngRoute'
 ])
 
@@ -36,7 +37,11 @@ angular.module('Recipeoples', [
     })
     .when('/group', {
       templateUrl: 'group/group.html',
-      controller: 'GroupeController'
+      controller: 'GroupController'
+    })
+    .when('/settings', {
+      templateUrl: 'settings/settings.html',
+      controller: 'SettingsController'
     })
     .otherwise('/');
 });

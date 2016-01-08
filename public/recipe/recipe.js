@@ -1,5 +1,5 @@
 angular.module('Recipeoples.recipe', [])
 
 .controller('RecipeController', function($scope){
-  $scope.hello = "recipe template"
-})
+  $scope.hello = "recipe template";
+});
