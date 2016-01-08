@@ -1,5 +1,5 @@
-angular.module('Recipeople.profile', [])
+angular.module('Recipeoples.profile', [])
 
 .controller('ProfileController', function($scope){
-  $scope.hello = "hello profile!"
+  $scope.hello = "profile template"
 })
