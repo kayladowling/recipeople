@@ -4,8 +4,15 @@ angular.module('Recipeoples.profile', [])
   //angular.extend($scope, ProfileFactory); WE DONT NEED THIS, I THINK.
   //$scope.user = ProfileFactory.getUserInfo(tokenOrSomething);
   $scope.hello = "Hello User!"
-  // $scope.userecipes = ProfileFactory.getRecipes(userid)
-  // $scope.usergroups = ProfileFactory.getGroups(userid)
+  
+
+  //$scope.userecipes = ProfileFactory.getRecipes(userid)
+  //$scope.usergroups = ProfileFactory.getGroups(userid)
+  $scope.userrecipes = ["this is a recipe", 'also, this', 'this, too, is a recipe']
+  $scope.usergroups = ["Dunder-Mifflin Pot-Luck", "Bowling Team", "Hudak Family"];
+  //DUMMY^
+
+  
   // $scope.goToRecipe = ProfileFactory.goToRecipe
   // $scope.goToGroup = ProfileFactory.goToRecipe
   
@@ -28,7 +35,7 @@ angular.module('Recipeoples.profile', [])
   var getRecipes = function (userid){
    return $http({
     method: 'GET',
-    url: "/api/recipe/author/" + userid
+    url: "/api/recipes/author/" + userid
    })
     .then(function(res){
       //data.recipes = res.data;
