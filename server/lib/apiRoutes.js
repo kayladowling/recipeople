@@ -22,10 +22,14 @@ var somethingWithDB = function(req, res) {
 };
 
 var somethingElseWithDB = function (req, res) {
-  console.log(req.body);
+  console.log(req.params.action); // createRecipe
+  console.log(req.body); // {}
+  util.sendResponse(req, res);
 };
 
 module.exports = function (app) {
+
+  // everything in here is /api/
 
   app.get('/:type/:prop/:query', somethingWithDB);
 
