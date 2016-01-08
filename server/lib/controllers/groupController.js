@@ -1,0 +1,1 @@
+var Group = require('../db/models/group.js');
