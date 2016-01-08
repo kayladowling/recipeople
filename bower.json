@@ -1,0 +1,23 @@
+{
+  "name": "recipeople",
+  "homepage": "https://recipeople.herokuapp.com",
+  "authors": [
+    "hrr11-gremlin"
+  ],
+  "description": "social recipes",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/lib"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6"
+  }
+}

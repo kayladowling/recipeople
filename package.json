@@ -1,0 +1,35 @@
+{
+  "name": "recipeople",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "bower": "^1.7.2",
+    "express": "4.13.3",
+    "mongoose": "^4.3.4"
+  },
+  "engines": {
+    "node": "5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr11-gremlin/recipeople.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "recipeople"
+  ],
+  "author": "hrr11-gremlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrr11-gremlin/recipeople/issues"
+  },
+  "homepage": "https://github.com/hrr11-gremlin/recipeople#readme"
+}
