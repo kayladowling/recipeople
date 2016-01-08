@@ -1,5 +1,5 @@
 module.exports = {
-  sendResponse: function(req, res) {
-    res.status(200).send(res.body);
+  sendResponse: function(req, res, status) {
+    res.status(status).send(res.body);
   }
 };

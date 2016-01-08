@@ -1,38 +1,41 @@
 var util = require('./util.js');
 var Recipe = require('../db/models/recipe.js');
-var somethingWithDB = function(req, res) {
+var recipeController = require('./controllers/recipeController.js');
 
-  // mock data, real data would come from db
-  // var data = [{
-  //   id: req.params.id,
-  //   title: 'A Test Recipe',
-  //   ingredients: ['1/2 apple', '1/2 orange', '2 cups spinach'],
-  //   author: { id: 1, username: 'Matt'}
-  // }];
-  // res.body = data;
-  Recipe.find({ 'title': 'Fried Pickles'}, function (err, recipe) {
-    console.log(recipe);
-    res.body = [recipe];
-    util.sendResponse(req, res);
-  });
-  /*console.log('type: ', req.params.type);
-  console.log('prop: ', req.params.prop);
-  console.log('query: ', req.params.query);
-  util.sendResponse(req, res);*/
+// determines the type of get request and routes to the correct controller
+var getRoutes = function(req, res) {
+  var type = req.params.type;
+  apiTypes.get[type](req, res);
 };
 
-var somethingElseWithDB = function (req, res) {
-  console.log(req.params.action); // createRecipe
-  console.log(req.body); // {}
-  util.sendResponse(req, res);
+var postRoutes = function (req, res) {
+  var action = req.params.action;
+  console.log(action);
+  apiTypes.post[action](req, res);
+};
+
+var apiTypes = {
+  'get': {
+    'recipes': recipeController.findRecipe
+  },
+  'post': {
+    'createRecipe': recipeController.createRecipe
+  }
 };
 
 module.exports = function (app) {
 
-  // everything in here is /api/
+  // everything in here is from the /api endpoint
 
-  app.get('/:type/:prop/:query', somethingWithDB);
+  // generic /type requests (e.g., /recipes) default to finding all
+  app.get('/:type', getRoutes);
+  // get requests come in the /type/prop/query format
+  // e.g., /recipes/title/Fried Pickles
+  app.get('/:type/:prop/:query', getRoutes);
 
-  app.post('/:action', somethingElseWithDB);
+
+  // post requests come in the /action format with the additions in the body in json
+  // e.g., /createRecipe, /likeRecipe, etc.
+  app.post('/:action', postRoutes);
 
 };
