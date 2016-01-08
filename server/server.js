@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Recipe = require('./db/models/recipe');
+var User = require('./db/models/user');
 
 
 var app = express();
@@ -25,6 +26,5 @@ testipe.ingredients = ['pickles', 'flour', 'salt', 'pepper'];
 testipe.direction = "Mix flour, salt, pepper. Dredge pickles in flour mix. Deep fry until golden";
 testipe.author = "theBackOfTheHouse";
 
-console.log(testipe);
 
 module.exports = app;
