@@ -1,0 +1,38 @@
+<div ng-controller='PostController'>
+  <div class= postRecipe >
+    <h1>Post Recipe</h1>
+    <form name='postRecipeForm' ng-submit='postRecipe()'>
+  <!-- title -->
+   Recipe Name: <input type='text'ng-model='recipe.title'required=''>
+  <!--   image_url: Include Later -->
+  <!--   ingredients -->
+  Ingredients: <input type='text'ng-model='recipe.ingredients' required=''>
+  <!--   directions -->
+  Directions: <input type='text'ng-model='recipe.directions' required=''>
+  <!--   author -->
+  <!-- likedBy include author -->
+  <!--   groups: Array[obj] -->
+  <!-- Should this be a drop down option? -->
+  Share with Group: <input type='text'ng-model='recipe.groups' required=''>
+  <!-- review -->
+  Recipe Review: <input type='text'ng-model='recipe.reviews' required=''>
+    
+    
+
+
+
+
+
+
+
+<!-- Database Recipe SCHEMA
+   id: Number, unique
+  title: String,
+  image_url: String,
+  ingredients: Array[str]
+  directions: String,
+  author: String
+  likedBy: Array[obj]
+  dislikedBy: Array[obj]
+  groups: Array[obj]
+  reviews: Array[obj] -->
