@@ -2,21 +2,16 @@ var express = require('express');
 var mongoose = require('mongoose');
 var Recipe = require('./db/models/recipe');
 var User = require('./db/models/user');
-
-
+var bodyParser = require('body-parser');
 var app = express();
+
 mongoose.connect('127.0.0.1:27017');
-
-
 app.use('/', express.static(__dirname + '/../public'));
+app.use(bodyParser.json());
 
 app.get('/', function(req, res){
   res.render('index');
 });
-
-
-
-
 
 var testipe = new Recipe();
 
@@ -26,5 +21,10 @@ testipe.ingredients = ['pickles', 'flour', 'salt', 'pepper'];
 testipe.direction = "Mix flour, salt, pepper. Dredge pickles in flour mix. Deep fry until golden";
 testipe.author = "theBackOfTheHouse";
 
+// grab all api requests and send them to the
+// api router
+var apiRoutes = express.Router();
+app.get('/api', apiRoutes);
+require('./lib/apiRoutes.js')(apiRoutes);
 
 module.exports = app;
