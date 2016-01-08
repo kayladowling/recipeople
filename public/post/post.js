@@ -1,4 +1,4 @@
-angular.module('Recipeople.post', [])
+angular.module('Recipeoples.post', [])
 
 .controller('PostController', function($scope, $location, PostRecipeFactory){
  $scope.recipe = {};
