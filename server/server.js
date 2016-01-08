@@ -7,7 +7,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 
-mongoose.connect('127.0.0.1:27017');
+mongoose.connect('kayladowling:hackreactor16@ds039125.mongolab.com:39125/heroku_p2sq7f7p');
 app.use('/', express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 
