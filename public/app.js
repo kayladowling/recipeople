@@ -1,7 +1,7 @@
 angular.module('Recipeoples', [
 	'ngRoute', 
 	'Recipeoples.landing', 
-  // 'Recipeoples.auth',
+  'Recipeoples.auth',
 	'Recipeoples.profile',
   // 'Recipeoples.post',
   'Recipeoples.recipe', 
