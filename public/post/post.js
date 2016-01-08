@@ -1,4 +1,4 @@
-angular.module('Recipeople.post', [])
+angular.module('Recipeoples.post', [])
 
 .controller('PostController', function($scope, $location, PostRecipeFactory){
  $scope.recipe = {};
@@ -9,21 +9,11 @@ angular.module('Recipeople.post', [])
 })
 
 .factory('PostRecipeFactory', function($http) {
-  var postRecipe = function() {
+  var postRecipe = function(data) {
     return $http({
-      method: 'POST'
-      url: '/post'
-      data: {
-        recipes : title,
-        recipe : image_url,
-        recipe: ingredients, 
-        recipe: directions,
-        recipe: author,
-        recipe: likedBy,
-        recipe: dislikedBy,
-        recipe: groups,
-        recipe: reviews,
-      }
+      method: 'POST',
+      url: '/post',
+      data: data
     })
     .then(function(response) {
       return response.data;

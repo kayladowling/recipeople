@@ -3,7 +3,7 @@ angular.module('Recipeoples', [
 	'Recipeoples.landing', 
   'Recipeoples.auth',
 	'Recipeoples.profile',
-  // 'Recipeoples.post',
+  'Recipeoples.post',
   'Recipeoples.recipe', 
   'Recipeoples.group',
   'Recipeoples.settings'
