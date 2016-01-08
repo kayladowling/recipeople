@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "Recipeoples">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <title>Recipeople</title>
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
@@ -17,13 +18,16 @@
         <li><a href="#/settings">Settings</a></li>
       </ul>
     </div>
-
+    <h4 ng-app= "AppCtrl">{{hello}}</h4>
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <div ng-view></div>
-
     <!-- Scripts -->
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="landing/landing.js"></script>
+    <script src="recipe/recipe.js"></script>
+    <script src="profile/profile.js"></script>
   </body>
 </html>

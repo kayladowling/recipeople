@@ -4,13 +4,13 @@ angular.module('Recipeoples', [
 	'Recipeoples.recipe', 
 	'Recipeoples.profile'])
 
-.controller('AppCtrl', function($scope){
+.controller('AppCtrl', function($scope, $location){
   $scope.hello = "hello world"
 })
 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/landing', {
+    .when('/', {
       templateUrl: 'public/landing/landing.html',
       controller: 'LandingController'
     })
@@ -23,6 +23,6 @@ angular.module('Recipeoples', [
       controller: 'ProfileController'
     })
      .otherwise({
-      redirectTo: '/landing'
+      redirectTo: '/'
     })
 })
