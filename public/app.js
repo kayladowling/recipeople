@@ -1,12 +1,12 @@
-angular.module('Recipeoples', [ 
+angular.module('Recipeoples', [
+	'ngRoute', 
 	'Recipeoples.landing', 
-  'Recipeoples.auth',
-  'Recipeoples.profile',
-  'Recipeoples.post',
-	'Recipeoples.recipe', 
-	'Recipeoples.group',
-  'Recipeoples.settings',
-  'ngRoute'
+  // 'Recipeoples.auth',
+	'Recipeoples.profile',
+  // 'Recipeoples.post',
+  'Recipeoples.recipe', 
+  'Recipeoples.group',
+  'Recipeoples.settings'
 ])
 
 .config(function($routeProvider, $httpProvider) {
@@ -42,6 +42,6 @@ angular.module('Recipeoples', [
     .when('/settings', {
       templateUrl: 'settings/settings.html',
       controller: 'SettingsController'
-    })
+    }) 
     .otherwise('/');
 });
