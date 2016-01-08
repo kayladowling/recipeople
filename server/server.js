@@ -4,6 +4,8 @@ var Recipe = require('./db/models/recipe');
 var User = require('./db/models/user');
 var bodyParser = require('body-parser');
 var app = express();
+var bodyParser = require('body-parser');
+
 
 mongoose.connect('127.0.0.1:27017');
 app.use('/', express.static(__dirname + '/../public'));
@@ -20,6 +22,7 @@ testipe.image_url = 'http://foodnetwork.sndimg.com/content/dam/images/food/fulls
 testipe.ingredients = ['pickles', 'flour', 'salt', 'pepper'];
 testipe.direction = "Mix flour, salt, pepper. Dredge pickles in flour mix. Deep fry until golden";
 testipe.author = "theBackOfTheHouse";
+
 
 // grab all api requests and send them to the
 // api router
