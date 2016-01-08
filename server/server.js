@@ -22,7 +22,6 @@ testipe.image_url = 'http://foodnetwork.sndimg.com/content/dam/images/food/fulls
 testipe.ingredients = ['pickles', 'flour', 'salt', 'pepper'];
 testipe.direction = "Mix flour, salt, pepper. Dredge pickles in flour mix. Deep fry until golden";
 testipe.author = "theBackOfTheHouse";
-testipe.save();
 
 
 // grab all api requests and send them to the

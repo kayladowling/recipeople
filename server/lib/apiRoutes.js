@@ -10,7 +10,7 @@ var somethingWithDB = function(req, res) {
   //   author: { id: 1, username: 'Matt'}
   // }];
   // res.body = data;
-  Recipe.findOne({ 'title': 'Fried Pickles'}, function (err, recipe) {
+  Recipe.find({ 'title': 'Fried Pickles'}, function (err, recipe) {
     console.log(recipe);
     res.body = [recipe];
     util.sendResponse(req, res);
@@ -21,8 +21,14 @@ var somethingWithDB = function(req, res) {
   util.sendResponse(req, res);*/
 };
 
+var somethingElseWithDB = function (req, res) {
+  console.log(req.body);
+};
+
 module.exports = function (app) {
 
   app.get('/:type/:prop/:query', somethingWithDB);
+
+  app.post('/:action', somethingElseWithDB);
 
 };
