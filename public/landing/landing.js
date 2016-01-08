@@ -1,5 +1,5 @@
-angular.module('Recipeople.landing', [])
+angular.module('Recipeoples.landing', [])
 
 .controller('LandingController', function($scope){
-  $scope.hello = "hello landing!"
+  $scope.hello = "You have landed."
 })

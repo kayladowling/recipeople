@@ -2,24 +2,21 @@ angular.module('Recipeoples', [
 	'ngRoute', 
 	'Recipeoples.landing', 
 	'Recipeoples.recipe', 
-	'Recipeoples.profile'])
-
-.controller('AppCtrl', function($scope, $location){
-  $scope.hello = "hello world"
-})
+	'Recipeoples.profile'
+])
 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'public/landing/landing.html',
+      templateUrl: 'landing/landing.html',
       controller: 'LandingController'
     })
-    .when('/recipes', {
-      templateUrl: 'public/recipes/recipes.html',
-      controller: 'ProfileController'
+    .when('/recipe', {
+      templateUrl: 'recipe/recipe.html',
+      controller: 'RecipeController'
     })
     .when('/profile', {
-      templateUrl: 'public/profile/profile.html',
+      templateUrl: 'profile/profile.html',
       controller: 'ProfileController'
     })
      .otherwise({
