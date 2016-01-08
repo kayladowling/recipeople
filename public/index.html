@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app ="Recipeoples">
+<html lang="en" ng-app="Recipeoples">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +7,72 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Recipeople</title>
+    <!-- Bootstrap core CSS -->
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Recipeople CSS -->
+    <link href="../styles/main.css" rel="stylesheet">
+
   </head>
   <body>
-    <h1>Recipeople</h1>
-    <div class="toolbar">
-      <ul>
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/profile">Profile</a></li>
-        <li><a href="#/settings">Settings</a></li>
-      </ul>
-    </div>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/">Recipeople</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#/post">Post a Recipe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/post">Post a Recipe</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/settings">Settings</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view></div>
+    <div class="container">
+      <div class="content" ng-view></div>
+    </div>
+
+
     <!-- Scripts -->
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular-route/angular-route.min.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="app.js"></script>
     <script src="landing/landing.js"></script>
-    <script src="recipe/recipe.js"></script>
+    <script src="auth/auth.js"></script>
     <script src="profile/profile.js"></script>
+    <script src="post/post.js"></script>
+    <script src="recipe/recipe.js"></script>
+    <script src="group/group.js"></script>
+    <script src="settings/settings.js"></script>
+
   </body>
 </html>

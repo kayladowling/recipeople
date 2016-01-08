@@ -1,0 +1,10 @@
+/*CSS which will override Bootstrap CSS thoughout the site*/
+
+.content {
+  margin-top: 70px;
+}
+
+.navbar-nav li:active{
+  color: #555;
+  background-color: #e7e7e7;
+}
