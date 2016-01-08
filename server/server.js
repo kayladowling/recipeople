@@ -27,7 +27,7 @@ testipe.author = "theBackOfTheHouse";
 // grab all api requests and send them to the
 // api router
 var apiRoutes = express.Router();
-app.get('/api', apiRoutes);
+app.use('/api', apiRoutes);
 require('./lib/apiRoutes.js')(apiRoutes);
 
 module.exports = app;
