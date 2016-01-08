@@ -3,19 +3,21 @@
     <h1>Post Recipe</h1>
     <form name='postRecipeForm' ng-submit='postRecipe()'>
   <!-- title -->
-   Recipe Name: <input type='text'ng-model='recipe.title'required=''>
-  <!--   image_url: Include Later -->
+   Recipe Name: <input type='text'ng-model='recipe.title'required=''> <br>
+  <!--   image_url-->
+   Photo: <input type='text'ng-model='recipe.image_url'><br>
   <!--   ingredients -->
-  Ingredients: <input type='text'ng-model='recipe.ingredients' required=''>
+  Ingredients: <input type='text'ng-model='recipe.ingredients' required=''><br>
   <!--   directions -->
-  Directions: <input type='text'ng-model='recipe.directions' required=''>
+  Directions: <input type='text'ng-model='recipe.directions' required=''><br>
   <!--   author -->
   <!-- likedBy include author -->
   <!--   groups: Array[obj] -->
   <!-- Should this be a drop down option? -->
-  Share with Group: <input type='text'ng-model='recipe.groups' required=''>
+  Share with Group: <input type='text'ng-model='recipe.groups' required=''><br>
   <!-- review -->
-  Recipe Review: <input type='text'ng-model='recipe.reviews' required=''>
+  Recipe Review: <input type='text'ng-model='recipe.reviews' required=''><br>
+  <button type='submit'>Submit</button>
     
     
 
