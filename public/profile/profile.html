@@ -2,15 +2,15 @@
 <div id = "profilegroups">
 <h4>Your Groups:</h4>
   <ul>
-    <li ng-repeat="group in groups">
-    	<p ng-click='goToRecipe(groupID)'>{{group.title}}</p>
+    <li ng-repeat="group in usergroups">
+    	<p ng-click='goToGroup(groupID)'>{{group.title}}</p>
     </li>
   </ul>
 </div>
 <div id = "profilerecipes">
 <h4>Your Public Recipes:</h4>
   <ul>
-    <li ng-repeat="recipe in profileRecipes">
+    <li ng-repeat="recipe in userecipes">
     	<p ng-click='goToRecipe(recipeID)'>{{recipe.title}}</p>
     </li>
   </ul>

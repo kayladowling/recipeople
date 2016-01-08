@@ -1,17 +1,18 @@
 angular.module('Recipeoples.profile', [])
 
 .controller('ProfileController', function($scope, ProfileFactory){
-  ProfileFactory.getUserInfo();
+  //angular.extend($scope, ProfileFactory); WE DONT NEED THIS, I THINK.
+  //$scope.user = ProfileFactory.getUserInfo(tokenOrSomething);
   $scope.hello = "Hello User!"
-  $scope.recipes = ProfileFactory.getRecipes(userid)
-  $scope.groups = ProfileFactory.getGroups(userid)
-  $scope.goToRecipe = ProfileFactory.goToRecipe
-  $scope.goToGroup = ProfileFactory.goToRecipe
+  // $scope.userecipes = ProfileFactory.getRecipes(userid)
+  // $scope.usergroups = ProfileFactory.getGroups(userid)
+  // $scope.goToRecipe = ProfileFactory.goToRecipe
+  // $scope.goToGroup = ProfileFactory.goToRecipe
   
 })
 
 .factory('ProfileFactory', function($http){
-  //var data = {}
+  //var data = {}  MIGHT BE HELPFUL
   
   var getUserInfo = function(tokenOrSomething){
     return $http({
@@ -27,7 +28,7 @@ angular.module('Recipeoples.profile', [])
   var getRecipes = function (userid){
    return $http({
     method: 'GET',
-    url: "/api/recipes/" + userid
+    url: "/api/recipe/author/" + userid
    })
     .then(function(res){
       //data.recipes = res.data;
@@ -38,7 +39,7 @@ angular.module('Recipeoples.profile', [])
   var getGroups = function (userid){
    return $http({
     method: 'GET',
-    url: "/api/groups/" + userid
+    url: "/api/group/members/" + userid
    })
     .then(function(res){
       //data.groups = res.data;
@@ -66,13 +67,11 @@ angular.module('Recipeoples.profile', [])
     });
   };
   
-  return {
-  	recipes:recipes,
-  	groups:groups,
-  	getUserInfo:getUserInfo,
-  	getRecipes:getRecipes,
-  	getGroups:getGroups,
-  	goToRecipe:goToRecipe,
-  	goToGroup:goToGroup
+   return {
+   	 getUserInfo:getUserInfo,
+  	 getRecipes:getRecipes,
+   	 getGroups:getGroups,
+  	 goToRecipe:goToRecipe,
+   	 goToGroup:goToGroup
   };
 });
