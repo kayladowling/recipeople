@@ -1,7 +1,7 @@
 angular.module('Recipeoples.recipe', [])
 
 
-.controller('RecipeController', function($scope, $rootScope, RecipeFactory){
+.controller('RecipeController', function($scope, $rootScope, RecipeFactory, getFactory){
   // TODO: Delete this preseeded focus recipe once being set elsewhere
   $rootScope.focusRecipe = $rootScope.focusRecipe || {
     title: 'Awesome Burger',
@@ -20,11 +20,18 @@ angular.module('Recipeoples.recipe', [])
   // TODO: Refactor below to work with promise.
   var authorName = $scope.authorName = RecipeFactory.getAuthorName(recipe.author);
 
-  $scope.focusUserById = function(userid) {
-    // TODO: Refactor below to work with promise.
-    $rootScope.focusUser = RecipeFactory.getUserById(userid);
-    console.log('Focus user:', $rootScope.focusUser);
+  // Sets the root scope's focus user.
+  $scope.focusUser = function(id) {
+    getFactory.userById(id).then(function(user){
+      $rootScope.focusUser = user;
+      console.log('Focus user:', $rootScope.focusUser);
+    });
   };
+
+  // TODO: Remove once done testing.
+  getFactory.recipesByLiked(1).then(function(recipe) {
+    $scope.TEST = recipe[0];
+  });
 
 })
 
@@ -46,33 +53,8 @@ angular.module('Recipeoples.recipe', [])
     //  });
   };
 
-  var getUserById = function (userid) {
-    return {
-      username: 'Bob',
-      image_url: 'https://pbs.twimg.com/profile_images/1044973752/390dfbe9-eccf-41f9-822e-17c8d4c251b4.jpg',
-      liked: [],
-      disliked: [],
-      groups: [],
-      authored: [],
-      testid: 1,
-      friends: []
-    };
-
-    // TODO: Uncomment once users db query is in place.
-    // return $http({
-    //   method: 'GET',
-    //   url: '/api/users/id/' + userid
-    // })
-    // .then(function(res){
-    //   console.log('Got recipe author', res.data);
-
-    //   return res.data[0];
-    // });
-  };
-
 
   return {
-    getAuthorName: getAuthorName,
-    getUserById: getUserById
+    getAuthorName: getAuthorName
   };
 });

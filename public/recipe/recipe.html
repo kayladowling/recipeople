@@ -20,7 +20,7 @@
 
 <div class="col-md-4">
   <h2 class="recipe-title">{{ recipe.title }}</h2>
-  <strong>by <a href="#/profile" ng-click="focusUserById()">{{ authorName }}</a></strong>
+  <strong>by <a href="#/profile" ng-click="focusUser(recipe.author)">{{ authorName }}</a></strong>
   <div class="ingredients">
     <h3>Ingredients</h3>
     <ul>
@@ -32,3 +32,5 @@
 <div class="directions">
   {{ recipe.directions }}
 </div>
+
+{{ TEST }}
