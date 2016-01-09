@@ -1,21 +1,23 @@
 <div ng-controller='PostController'>
-  <div class= postRecipe >
-    <h1>Post Recipe</h1>
-    <form name='postRecipeForm' ng-submit='postRecipe()'>
-  <!-- title -->
-   Recipe Name: <input type='text'ng-model='recipe.title'required=''>
-  <!--   image_url: Include Later -->
-  <!--   ingredients -->
-  Ingredients: <input type='text'ng-model='recipe.ingredients' required=''>
-  <!--   directions -->
-  Directions: <input type='text'ng-model='recipe.directions' required=''>
-  <!--   author -->
-  <!-- likedBy include author -->
-  <!--   groups: Array[obj] -->
-  <!-- Should this be a drop down option? -->
-  Share with Group: <input type='text'ng-model='recipe.groups' required=''>
-  <!-- review -->
-  Recipe Review: <input type='text'ng-model='recipe.reviews' required=''>
+   <div class= 'postRecipe'>
+      <h1>Post Recipe</h1>
+      <form name='postRecipeForm' ng-submit='postRecipe()'>
+      <!-- title -->
+      Recipe Name: <input type='text'ng-model='recipe.title'required=''> <br>
+      <!--   image_url-->
+      Photo: <input type='text'ng-model='recipe.image_url'><br>
+      <!--   ingredients -->
+      Ingredients: <input type='text'ng-model='recipe.ingredients' required=''><br>
+      <!--   directions -->
+      Directions: <input type='text'ng-model='recipe.directions' required=''><br>
+      <!--   groups: Array[obj] -->
+      <!-- Should this be a drop down option? -->
+      Share with Group: <input type='text'ng-model='recipe.groups' required=''><br>
+      <!-- review -->
+      Recipe Review: <input type='text'ng-model='recipe.reviews' required=''><br>
+      <button type='submit'>Submit</button>
+   </div>
+</div>
     
     
 
