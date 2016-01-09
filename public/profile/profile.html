@@ -1,18 +1,20 @@
-<h3>{{hello}}</h3>
-<div id = "profilegroups">
+<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<h3>Hello {{user.username}} !</h3>
+
+<div id = "profilerecipes" class = "col-md-4">
+<h4>Your Published Recipes:</h4>
+  <ul>
+    <li ng-repeat="recipe in userrecipes">
+    	<p ng-model= 'recipe.title' ng-click='goToRecipe(recipe.title)'>{{recipe.title}}</p>
+    </li>
+  </ul>
+</div>
+<div id = "profilegroups" class = "col-md-4">
 <h4>Your Groups:</h4>
   <ul>
     <li ng-repeat="group in usergroups">
-    	<p ng-click='goToGroup(groupID)'>{{group.title}}</p>
+    	<p ng-click='goToGroup(1)'>{{group}}</p>
     </li>
   </ul>
 </div>
-<div id = "profilerecipes">
-<h4>Your Public Recipes:</h4>
-  <ul>
-    <li ng-repeat="recipe in userecipes">
-    	<p ng-click='goToRecipe(recipeID)'>{{recipe.title}}</p>
-    </li>
-  </ul>
-</div>
-<a href = "">Post a new recipe!</a>
+
