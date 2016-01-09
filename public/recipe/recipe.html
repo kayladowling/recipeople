@@ -3,10 +3,24 @@
   <div class="profile-image">
     <img src="{{ recipe.image_url }}">
   </div>
+  <div class="recipe-group-list col-md-6">
+    <h4>Shared in:</h4>
+    <ul>
+      <li class="recipe-group" ng-repeat="group in recipe.groups">{{ group }}</li>
+    </ul>
+  </div>
+  <div class="recipe-like-list col-md-6">
+    <h4>Liked by:</h4>
+    <ul>
+      <li class="recipe-liked-by" ng-repeat="user in recipe.likedBy">{{ user }}</li>
+    </ul>
+  </div>
+  </div>
 </div>
 
 <div class="col-md-4">
   <h2 class="recipe-title">{{ recipe.title }}</h2>
+  <strong>by <a href="#/profile" ng-click="focusUserById()">{{ authorName }}</a></strong>
   <div class="ingredients">
     <h3>Ingredients</h3>
     <ul>

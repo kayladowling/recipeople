@@ -9,9 +9,9 @@ angular.module('Recipeoples.recipe', [])
     ingredients: ['One Bun', 'One Burger', 'Like a ton of Cheese'],
     directions: 'Put burger in bun. Spread cheese. Have a heartattack.',
     author: 1,
-    likedBy: [],
+    likedBy: ['Bob', 'Bud', 'Boshika'],
     dislikedBy: [],
-    groups: [],
+    groups: ['Burgers Anonymous', 'Moose Lodge', 'HiRs'],
     reviews: []
   };
 
