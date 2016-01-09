@@ -2,7 +2,7 @@
 <h3>Hello {{user.username}} !</h3>
 
 <div id = "profilerecipes" class = "col-md-4">
-<h4>Your Public Recipes:</h4>
+<h4>Your Published Recipes:</h4>
   <ul>
     <li ng-repeat="recipe in userrecipes">
     	<p ng-model= 'recipe.title' ng-click='goToRecipe(recipe.title)'>{{recipe.title}}</p>
