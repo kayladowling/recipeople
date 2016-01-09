@@ -47,8 +47,18 @@ angular.module('Recipeoples.services', [])
     });
   };
 
-  var usersByName = function () {
-
+  // TODO: Fix this once database paths are ready.
+  // Returns an array of users which match the name.
+  var usersByName = function (username) {
+    return $http({
+      method: 'GET',
+      url: '/' // '/api/users/_id/' + id  // <-- uncomment when path is ready
+    })
+    .then(function(res){
+      console.log('Got users with username', username, 'from db:', res.data);
+      return [dummyUser];  // <-- delete once path is ready
+      return res.data;
+    });
   };
 
 

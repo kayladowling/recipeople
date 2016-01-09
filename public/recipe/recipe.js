@@ -29,8 +29,8 @@ angular.module('Recipeoples.recipe', [])
   };
 
   // TODO: Remove once done testing.
-  getFactory.recipesByLiked(1).then(function(recipe) {
-    $scope.TEST = recipe[0];
+  getFactory.usersByName('Bob').then(function(user) {
+    $scope.TEST = user[0];
   });
 
 })
