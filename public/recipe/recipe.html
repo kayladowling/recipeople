@@ -1,1 +1,20 @@
-<h3>{{ recipe }}</h3>
+<!-- Recipe template, displays a single recipe saved to $rootScope.focusRecipe -->
+<div class="col-md-8">
+  <div class="profile-image">
+    <img src="{{ recipe.image_url }}">
+  </div>
+</div>
+
+<div class="col-md-4">
+  <h2 class="recipe-title">{{ recipe.title }}</h2>
+  <div class="ingredients">
+    <h3>Ingredients</h3>
+    <ul>
+      <li class="ingredient" ng-repeat="ingredient in recipe.ingredients">{{ ingredient }}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="directions">
+  {{ recipe.directions }}
+</div>
