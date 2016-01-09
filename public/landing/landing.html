@@ -1,1 +1,19 @@
-<h3>{{hello}}</h3>
+<div ng-controller='LandingController'>
+    <div class='col-md-10'>
+        <h3>displaying group recipes</h3>
+    </div>
+    <div class='col-md-2'>
+        <h8>create/join groups here</h8>
+        <form class="createGroupForm">
+            <input type='text' ng-model='recipe.image_url'>
+            <button class='createGroup'>Create Group</button>
+        </form>
+
+        <form class="createGroupForm">
+            <select name="dropDown">
+                <option value="TestGroup">TestGroup</option>
+            </select>
+        </form>
+        <button class='joinGroup'>Join Group</button>
+    </div>
+</div>
