@@ -13,9 +13,9 @@ angular.module('Recipeoples.profile', [])
   $scope.goToRecipe = ProfileFactory.goToRecipe //need parameter!
   $scope.goToGroup = ProfileFactory.goToGroup  //need parameter!
 
-  $scope.user = {username: "FRONT END DUMMY", testid: 1}
+  $scope.user = {username: "need dummy username", testid: 1}
   //DUMMY^
-  $scope.usergroups = ["Dunder-Mifflin Pot-Luck", "Bowling Team", "Hudak Family"];
+  $scope.usergroups = ["need dummy data", "need moar dummy data"];
   //DUMMY^
   
 })
