@@ -1,9 +1,9 @@
-<h3>{{hello}}</h3>
+<h3>Hello {{user.username}} !</h3>
 <div id = "profilegroups">
 <h4>Your Groups:</h4>
   <ul>
     <li ng-repeat="group in usergroups">
-    	<p ng-click='goToGroup(groupID)'>{{group}}</p>
+    	<p ng-click='goToGroup(1)'>{{group}}</p>
     </li>
   </ul>
 </div>
@@ -11,7 +11,7 @@
 <h4>Your Public Recipes:</h4>
   <ul>
     <li ng-repeat="recipe in userrecipes">
-    	<p ng-click='goToRecipe(recipeID)'>{{recipe}}</p>
+    	<p ng-model= 'recipe.title' ng-click='goToRecipe(recipe.title)'>{{recipe.title}}</p>
     </li>
   </ul>
 </div>

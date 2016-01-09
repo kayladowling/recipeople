@@ -1,34 +1,34 @@
 angular.module('Recipeoples.profile', [])
 
-.controller('ProfileController', function($scope, ProfileFactory){
-  //angular.extend($scope, ProfileFactory); WE DONT NEED THIS, I THINK.
-  //$scope.user = ProfileFactory.getUserInfo(tokenOrSomething);
-  $scope.hello = "Hello User!"
+.controller('ProfileController', function($scope, $rootScope, ProfileFactory){
+  angular.extend($scope, ProfileFactory); 
   
+  //retrieves all recipes authored by user, populates profile.html
+  ProfileFactory.getRecipes(1).then(function(recipes){
+     $scope.userrecipes = recipes;
+  })
 
-  //$scope.userecipes = ProfileFactory.getRecipes(userid)
+  //$scope.user = ProfileFactory.getUserInfo(1);
   //$scope.usergroups = ProfileFactory.getGroups(userid)
-  $scope.userrecipes = ["this is a recipe", 'also, this', 'this, too, is a recipe']
+  $scope.goToRecipe = ProfileFactory.goToRecipe //need parameter!
+  $scope.goToGroup = ProfileFactory.goToGroup  //need parameter!
+
+  $scope.user = {username: "FRONT END DUMMY", testid: 1}
+  //DUMMY^
   $scope.usergroups = ["Dunder-Mifflin Pot-Luck", "Bowling Team", "Hudak Family"];
   //DUMMY^
-
-  
-  // $scope.goToRecipe = ProfileFactory.goToRecipe
-  // $scope.goToGroup = ProfileFactory.goToRecipe
   
 })
 
-.factory('ProfileFactory', function($http){
-  //var data = {}  MIGHT BE HELPFUL
-  
+.factory('ProfileFactory', function($http, $location, $rootScope){
   var getUserInfo = function(tokenOrSomething){
     return $http({
     method: 'GET',
-    url: "/api/users/"+ tokenOrSomething
+    url: "/api/users/testid/"+ tokenOrSomething
    })
     .then(function(res){
-      //data.user = res.data;
       console.log('getUserInfo response data: ', res.data);
+      return res.data;
     });
   };
 
@@ -38,39 +38,42 @@ angular.module('Recipeoples.profile', [])
     url: "/api/recipes/author/" + userid
    })
     .then(function(res){
-      //data.recipes = res.data;
       console.log('getRecipes response data: ', res.data);
+      return res.data;
     });
   };
 
   var getGroups = function (userid){
    return $http({
     method: 'GET',
-    url: "/api/group/members/" + userid
+    url: "/api/groups/members/" + userid
    })
     .then(function(res){
-      //data.groups = res.data;
       console.log('getGroups response data: ', res.data);
     });
   };
 
-  var goToRecipe = function (id){
+  var goToRecipe = function (title){
+
    return $http({
     method: 'GET',
-    url: "/api/recipe/" + id
+    url: "/api/recipes/title/" + title
    })
     .then(function(res){
       console.log('goToGroup response data: ', res.data);
+      $rootScope.focusRecipe = res.data;
+      $location.path('/recipe/')
     });
   };
 
-  var goToGroup = function (id){
+  var goToGroup = function (groupid){
    return $http({
     method: 'GET',
-    url: "/api/group/" + id
+    url: "/api/groups/" + groupid
    })
     .then(function(res){
       console.log('goToGroup response data: ', res.data);
+      $location.path('/')
     });
   };
   
