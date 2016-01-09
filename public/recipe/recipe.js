@@ -20,28 +20,59 @@ angular.module('Recipeoples.recipe', [])
   // TODO: Refactor below to work with promise.
   var authorName = $scope.authorName = RecipeFactory.getAuthorName(recipe.author);
 
+  $scope.focusUserById = function(userid) {
+    // TODO: Refactor below to work with promise.
+    $rootScope.focusUser = RecipeFactory.getUserById(userid);
+    console.log('Focus user:', $rootScope.focusUser);
+  };
+
 })
 
 
 .factory('RecipeFactory', function($http){
 
-  var getAuthorName = function (userid){
+  var getAuthorName = function (userid) {
     return 'Awesome Dude';
 
-  //  TODO: Comment in once users db query is in place.
-  //  return $http({
-  //   method: 'GET',
-  //   url: "/api/users/id/" + userid
-  //  })
-  //   .then(function(res){
-  //     console.log('Got recipe author', res.data);
+    // TODO: Uncomment once users db query is in place.
+    // return $http({
+    //  method: 'GET',
+    //  url: '/api/users/id/' + userid
+    // })
+    //  .then(function(res){
+    //    console.log('Got recipe author', res.data);
 
-  //     return res.data[0].username;
-  //   });
+    //    return res.data[0].username;
+    //  });
+  };
+
+  var getUserById = function (userid) {
+    return {
+      username: 'Bob',
+      image_url: 'https://pbs.twimg.com/profile_images/1044973752/390dfbe9-eccf-41f9-822e-17c8d4c251b4.jpg',
+      liked: [],
+      disliked: [],
+      groups: [],
+      authored: [],
+      testid: 1,
+      friends: []
+    };
+
+    // TODO: Uncomment once users db query is in place.
+    // return $http({
+    //   method: 'GET',
+    //   url: '/api/users/id/' + userid
+    // })
+    // .then(function(res){
+    //   console.log('Got recipe author', res.data);
+
+    //   return res.data[0];
+    // });
   };
 
 
   return {
-    getAuthorName: getAuthorName
+    getAuthorName: getAuthorName,
+    getUserById: getUserById
   };
 });
