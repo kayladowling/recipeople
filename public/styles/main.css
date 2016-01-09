@@ -1,5 +1,10 @@
 /*CSS which will override Bootstrap CSS thoughout the site*/
 
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .content {
   margin-top: 70px;
 }
