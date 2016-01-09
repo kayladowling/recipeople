@@ -1,5 +1,6 @@
 angular.module('Recipeoples', [
 	'ngRoute', 
+  'Recipeoples.services',
 	'Recipeoples.landing', 
   'Recipeoples.auth',
 	'Recipeoples.profile',
