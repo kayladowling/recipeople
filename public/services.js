@@ -38,7 +38,7 @@ angular.module('Recipeoples.services', [])
   var userById = function (id) {
     return $http({
       method: 'GET',
-      url: '/' // '/api/users/_id/' + id  // <-- uncomment when path is ready
+      url: '/' // '/api/users/_id/' + id  // <-- uncomment when ready
     })
     .then(function(res){
       console.log('Got user with id', id, 'from db:', res.data);
@@ -52,7 +52,7 @@ angular.module('Recipeoples.services', [])
   var usersByName = function (username) {
     return $http({
       method: 'GET',
-      url: '/' // '/api/users/_id/' + id  // <-- uncomment when path is ready
+      url: '/' // '/api/users/username/' + username  // <-- uncomment when ready
     })
     .then(function(res){
       console.log('Got users with username', username, 'from db:', res.data);
@@ -132,11 +132,11 @@ angular.module('Recipeoples.services', [])
   /******** GROUPS ********/
 
   // TODO: Fix this once database paths are ready.
-  // Returns a single user from the database by their id.
+  // Returns a single group by their id.
   var groupById = function (id) {
     return $http({
       method: 'GET',
-      url: '/' //'/api/groups/_id/' + id  // <-- uncomment when path is ready
+      url: '/' //'/api/groups/_id/' + id  // <-- uncomment when ready
     })
     .then(function(res){
       console.log('Got group with id', id, 'from db:', res.data);
@@ -145,16 +145,46 @@ angular.module('Recipeoples.services', [])
     });
   };
 
-  var groupsByName = function () {
-
+  // TODO: Fix this once database paths are ready.
+  // Returns a an array of groups which match the name.
+  var groupsByName = function (name) {
+    return $http({
+      method: 'GET',
+      url: '/' //'/api/groups/name/' + name  // <-- uncomment when ready
+    })
+    .then(function(res){
+      console.log('Got groups with name', name, 'from db:', res.data);
+      return [dummyGroup];  // <-- delete once path is ready
+      return res.data[0];
+    });
   };
 
-  var groupsByMember = function () {
-
+  // TODO: Get dummy data set up, and make sure this query is correct.
+  // Returns an array of recipes which match the group.
+  var groupsByMember = function (memberId) {
+    return $http({
+      method: 'GET',
+      url: '/' //'/api/groups/members/' + memberId  // <-- uncomment when ready
+    })
+    .then(function(res){
+      console.log('Got groups with memberId', memberId, 'from db:', res.data);
+      return [dummyGroup];  // <-- delete once resolved
+      return res.data[0];
+    });
   };
 
-  var groupsByRecipe = function () {
-
+  // TODO: Get dummy data set up, and make sure this query is correct.
+  // Returns an array of recipes which match the group.
+  var groupsByRecipe = function (recipeId) {
+    return $http({
+      method: 'GET',
+      url: '/' //'/api/groups/recipes/' + recipeId  // <-- uncomment when ready
+    })
+    .then(function(res){
+      console.log('Got groups with recipeId', recipeId, 'from db:', res.data);
+      return [dummyGroup];  // <-- delete once resolved
+      return res.data[0];
+    });
   };
 
 

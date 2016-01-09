@@ -1,7 +1,7 @@
 angular.module('Recipeoples.recipe', [])
 
 
-.controller('RecipeController', function($scope, $rootScope, RecipeFactory, getFactory){
+.controller('RecipeController', function($scope, $rootScope, getFactory){
   // TODO: Delete this preseeded focus recipe once being set elsewhere
   $rootScope.focusRecipe = $rootScope.focusRecipe || {
     title: 'Awesome Burger',
@@ -17,44 +17,16 @@ angular.module('Recipeoples.recipe', [])
 
   var recipe = $scope.recipe = $rootScope.focusRecipe;
 
-  // TODO: Refactor below to work with promise.
-  var authorName = $scope.authorName = RecipeFactory.getAuthorName(recipe.author);
+  // Create authorname variable from recipe in order to display.
+  getFactory.userById(recipe.author).then(function(author) {
+    $scope.authorName = author.username;
+  });
 
-  // Sets the root scope's focus user.
+  // Sets the root scope's focus user to be read by profile.js.
   $scope.focusUser = function(id) {
     getFactory.userById(id).then(function(user){
       $rootScope.focusUser = user;
       console.log('Focus user:', $rootScope.focusUser);
     });
-  };
-
-  // TODO: Remove once done testing.
-  getFactory.usersByName('Bob').then(function(user) {
-    $scope.TEST = user[0];
-  });
-
-})
-
-
-.factory('RecipeFactory', function($http){
-
-  var getAuthorName = function (userid) {
-    return 'Awesome Dude';
-
-    // TODO: Uncomment once users db query is in place.
-    // return $http({
-    //  method: 'GET',
-    //  url: '/api/users/id/' + userid
-    // })
-    //  .then(function(res){
-    //    console.log('Got recipe author', res.data);
-
-    //    return res.data[0].username;
-    //  });
-  };
-
-
-  return {
-    getAuthorName: getAuthorName
   };
 });
