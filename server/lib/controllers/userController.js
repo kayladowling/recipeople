@@ -11,7 +11,7 @@ module.exports = {
         if (!user) {
           next(new Error('User does not exist'));
         } else {
-          user.checkPassword(password).then(function(isMatch) {
+          user.checkPassword(password, function(isMatch) {
             if (isMatch) {
               var token = jwt.encode(user, 'nyannyannyan');
               res.json({token: token});

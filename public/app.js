@@ -69,7 +69,6 @@ angular.module('Recipeoples', [
 })
 
 .run(function ($rootScope, $location, AuthFactory) {
-  
   // Checks the authentication token on all routes marked 'requireAuth'.
   $rootScope.$on('$routeChangeStart', function (evt, next, current) {
     if (next.$$route && next.$$route.requireAuth && !AuthFactory.isAuth()) {
