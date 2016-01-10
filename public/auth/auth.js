@@ -36,6 +36,30 @@ angular.module('Recipeoples.auth', [])
     });
   };
 
+  // TODO: Delete once server-side authentication ready.
+  var authenticate = function(user, isNew) {
+    return $http({
+      method: 'GET',
+      url: '/',
+      data: {}
+    })
+    .then(function(resp) {
+      return {
+        token: '',
+        user: {
+          username: user.username,
+          image_url: 'https://pbs.twimg.com/profile_images/1044973752/390dfbe9-eccf-41f9-822e-17c8d4c251b4.jpg',
+          liked: [],
+          disliked: [],
+          groups: [],
+          authored: [],
+          testid: 1,
+          friends: []
+        }
+      };
+    });
+  };
+
   // Checks whether or not a user has an authorization cookie.
   var isAuth = function() {
     return !!$window.localStorage.getItem('com.recipeople');

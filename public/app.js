@@ -14,7 +14,8 @@ angular.module('Recipeoples', [
   $routeProvider
     .when('/', {
       templateUrl: 'landing/landing.html',
-      controller: 'LandingController'
+      controller: 'LandingController',
+      requireAuth: true
     })
     .when('/signin', {
       templateUrl: 'auth/signin.html',
@@ -27,24 +28,29 @@ angular.module('Recipeoples', [
     })
     .when('/post', {
       templateUrl: 'post/post.html',
-      controller: 'PostController'
+      controller: 'PostController',
+      requireAuth: true
     })
     .when('/recipe', {
       templateUrl: 'recipe/recipe.html',
-      controller: 'RecipeController'
+      controller: 'RecipeController',
+      requireAuth: true
     })
     .when('/group', {
       templateUrl: 'group/group.html',
-      controller: 'GroupController'
+      controller: 'GroupController',
+      requireAuth: true
     })
     .when('/settings', {
       templateUrl: 'settings/settings.html',
-      controller: 'SettingsController'
+      controller: 'SettingsController',
+      requireAuth: true
     }) 
     .otherwise('/');
 
-  //Add interceptor to attach tokens to ajax calls.
-  $httpProvider.interceptors.push('AttachTokens');
+  // TODO: Uncomment once server-side authentication is done.
+  // Add interceptor to attach tokens to ajax calls.
+  // $httpProvider.interceptors.push('AttachTokens');
 })
 
 .factory('AttachTokens', function ($window) {
