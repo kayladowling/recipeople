@@ -12,8 +12,8 @@ angular.module('Recipeoples.auth', [])
       console.log('Data from submission recieved', data);
       $window.localStorage.setItem('com.recipeople', data.token);
       console.log('Set token.')
-      $rootScope.currentUser = data.user;
-      console.log('Set user', $rootScope.currentUser.username);
+      // $rootScope.currentUser = data.user;
+      // console.log('Set user', $rootScope.currentUser.username);
       $location.path('/');
     })
     .catch(function (error) {
@@ -42,30 +42,30 @@ angular.module('Recipeoples.auth', [])
   };
 
   // TODO: Delete once server-side authentication ready.
-  var authenticate = function(user, isNew) {
-    console.log('Creating dummy token for user', user.username);
-    return $http({
-      method: 'GET',
-      url: '/',
-      data: {}
-    })
-    .then(function(resp) {
-      console.log('returning dummy token and user');
-      return {
-        token: 'iamatoken',
-        user: {
-          username: user.username,
-          image_url: 'https://pbs.twimg.com/profile_images/1044973752/390dfbe9-eccf-41f9-822e-17c8d4c251b4.jpg',
-          liked: [],
-          disliked: [],
-          groups: [],
-          authored: [],
-          testid: 1,
-          friends: []
-        }
-      };
-    });
-  };
+  // var authenticate = function(user, isNew) {
+  //   console.log('Creating dummy token for user', user.username);
+  //   return $http({
+  //     method: 'GET',
+  //     url: '/',
+  //     data: {}
+  //   })
+  //   .then(function(resp) {
+  //     console.log('returning dummy token and user');
+  //     return {
+  //       token: 'iamatoken',
+  //       user: {
+  //         username: user.username,
+  //         image_url: 'https://pbs.twimg.com/profile_images/1044973752/390dfbe9-eccf-41f9-822e-17c8d4c251b4.jpg',
+  //         liked: [],
+  //         disliked: [],
+  //         groups: [],
+  //         authored: [],
+  //         testid: 1,
+  //         friends: []
+  //       }
+  //     };
+  //   });
+  // };
 
   // Checks whether or not a user has an authorization cookie.
   var isAuth = function() {
