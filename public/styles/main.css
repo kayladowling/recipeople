@@ -26,3 +26,8 @@ img {
 .signup-toggle {
   cursor: pointer;
 }
+
+.carousel {
+  width:700px;
+  height:360px;
+}
