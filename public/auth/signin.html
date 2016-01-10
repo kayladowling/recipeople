@@ -1,16 +1,22 @@
 <div class="container">
   <form class="form-signin">
+
+    <!-- $scope.signup tracks whether or not this form is in "signup mode" -->
     <h2 class="form-signin-heading" ng-show="!signup">Please sign in</h2>
     <h2 class="form-signin-heading" ng-show="signup">Please create an account</h2>
+
     <label for="inputEmail" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" ng-model="user.username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="user.password" required>
+
+    <!-- Clicking on this div will toggle $scope.signup -->
     <div class="signup-toggle" ng-click="signup=!signup">
       <span ng-show="!signup">Not a member? <strong>Sign up!</strong></span>
       <span ng-show="signup">Already a member? <strong>Sign in!</strong></span>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="submit()">
       <span ng-show="!signup">Sign in</span>
       <span ng-show="signup">Sign up</span>
     </button>
