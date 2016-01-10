@@ -1,15 +1,20 @@
 <div ng-controller='LandingController'>
     <div class='col-md-10'>
-        <h3>displaying group recipes</h3>
+        <div class= "allRecipes">
+        
+        </div>
+        <h3>displaying group recipes {{recipe}}</h3>
+        <ul>
+            <li ng-repeat="recipe in recipe"></li>
+        </ul>
     </div>
     <div class='col-md-2'>
-        <h8>create/join groups here</h8>
-        <form class="createGroupForm">
-            <input type='text' ng-model='recipe.image_url'>
+        <h8>Create or Join a Group</h8>
+        <form class="form-horizontal">
+            <input type='text'>
             <button class='createGroup'>Create Group</button>
         </form>
-
-        <form class="createGroupForm">
+        <form class="form-horizontal">
             <select name="dropDown">
                 <option value="TestGroup">TestGroup</option>
             </select>
