@@ -7,9 +7,9 @@ angular.module('Recipeoples.auth', [])
   // Passes in the user to be authenticated, either as new or returning.
   $scope.submit = function() {
     AuthFactory.authenticate($scope.user, $scope.signup)
-    .then(function (token) {
-      $window.localStorage.setItem('com.recipeople', token);
-      $rootScope.currentUser = token.user;
+    .then(function (data) {
+      $window.localStorage.setItem('com.recipeople', data.token);
+      $rootScope.currentUser = data.user;
       $location.path('/');
     })
     .catch(function (error) {
@@ -23,8 +23,8 @@ angular.module('Recipeoples.auth', [])
 .factory('AuthFactory', function ($http, $location, $window) {
 
   //Sends an authentication query either as a new user, or returning.
-  var authenticate = function(user, signup) {
-    var path = signup ? 'signup' : 'signin';
+  var authenticate = function(user, isNew) {
+    var path = isNew ? 'signup' : 'signin';
 
     return $http({
       method: 'POST',
@@ -32,14 +32,16 @@ angular.module('Recipeoples.auth', [])
       data: user
     })
     .then(function(resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
+  // Checks whether or not a user has an authorization cookie.
   var isAuth = function() {
     return !!$window.localStorage.getItem('com.recipeople');
   };
 
+  // Removes the authorization cookie.
   var signout = function() {
     $window.localStorage.removeItem('com.recipeople');
     $location.path('/signin');

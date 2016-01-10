@@ -20,13 +20,10 @@ angular.module('Recipeoples', [
       templateUrl: 'auth/signin.html',
       controller: 'AuthController'
     })
-    .when('/signup', {
-      templateUrl: 'auth/signup.html',
-      controller: 'AuthController'
-    })
     .when('/profile', {
       templateUrl: 'profile/profile.html',
-      controller: 'ProfileController'
+      controller: 'ProfileController',
+      requireAuth: true
     })
     .when('/post', {
       templateUrl: 'post/post.html',
@@ -45,4 +42,31 @@ angular.module('Recipeoples', [
       controller: 'SettingsController'
     }) 
     .otherwise('/');
+
+  //Add interceptor to attach tokens to ajax calls.
+  $httpProvider.interceptors.push('AttachTokens');
+})
+
+.factory('AttachTokens', function ($window) {
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem('com.recipeople');
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+  return attach;
+})
+
+.run(function ($rootScope, $location, AuthFactory) {
+  
+  // Checks the authentication token on all routes marked 'requireAuth'.
+  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+    if (next.$$route && next.$$route.requireAuth && !AuthFactory.isAuth()) {
+      $location.path('/signin');
+    }
+  });
 });
