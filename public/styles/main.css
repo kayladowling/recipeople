@@ -13,3 +13,16 @@ img {
   color: #555;
   background-color: #e7e7e7;
 }
+
+.form-signin {
+  margin: 0 auto;
+  max-width: 30em;
+}
+
+.btn-lg {
+  margin-top: 1em;
+}
+
+.signup-toggle {
+  cursor: pointer;
+}
