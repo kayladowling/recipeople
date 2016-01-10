@@ -50,13 +50,14 @@ angular.module('Recipeoples', [
 
   // TODO: Uncomment once server-side authentication is done.
   // Add interceptor to attach tokens to ajax calls.
-  // $httpProvider.interceptors.push('AttachTokens');
+  $httpProvider.interceptors.push('AttachTokens');
 })
 
 .factory('AttachTokens', function ($window) {
   var attach = {
     request: function (object) {
       var jwt = $window.localStorage.getItem('com.recipeople');
+      console.log(jwt);
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }

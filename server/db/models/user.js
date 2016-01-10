@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
-var Promise = require('bluebird');
-bcrypt = Promise.promisifyAll(bcrypt);
 
 
 var UserSchema = new Schema({
@@ -18,8 +16,10 @@ var UserSchema = new Schema({
 });
 
 
-UserSchema.methods.checkPassword = function (enteredPassword) {
-  return bcrypt.compareAsync(enteredPassword, this.password);
+UserSchema.methods.checkPassword = function (enteredPassword, cb) {
+  bcrypt.compare(enteredPassword, this.password, function(err, isMatch) {
+    cb(isMatch);
+  });
 };
 
 UserSchema.pre('save', function (next) {
@@ -30,11 +30,11 @@ UserSchema.pre('save', function (next) {
     return next();
   }
 
-  bcrypt.saltAsync(10).then(function(salt) {
-    bcrypt.hashAsync(user.password, salt, null).then(function(hash) {
-      user.password = hash;
-      next();
-    });
+  bcrypt.hash(user.password, 10, function(err, hash) {
+    console.log('hashing');
+    console.log(hash);
+    user.password = hash;
+    next();
   });
 });
 

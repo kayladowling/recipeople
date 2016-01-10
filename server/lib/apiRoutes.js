@@ -1,6 +1,7 @@
 var util = require('./util.js');
 var Recipe = require('../db/models/recipe.js');
 var recipeController = require('./controllers/recipeController.js');
+var userController = require('./controllers/userController.js');
 
 // determines the type of get request and routes to the correct controller
 var getRoutes = function(req, res) {
@@ -9,9 +10,8 @@ var getRoutes = function(req, res) {
 };
 
 var postRoutes = function (req, res) {
-  var action = req.params.action;
-  console.log(action);
-  apiTypes.post[action](req, res);
+  var type = req.params.type;
+  apiTypes.post[type](req, res);
 };
 
 var apiTypes = {
@@ -19,7 +19,7 @@ var apiTypes = {
     'recipes': recipeController.findRecipe
   },
   'post': {
-    'createRecipe': recipeController.createRecipe
+    'recipes': recipeController.createRecipe
   }
 };
 
@@ -33,9 +33,12 @@ module.exports = function (app) {
   // e.g., /recipes/title/Fried Pickles
   app.get('/:type/:prop/:query', getRoutes);
 
+  app.post('/users/signin', userController.signIn);
+  app.post('/users/signup', userController.signUp);
 
-  // post requests come in the /action format with the additions in the body in json
-  // e.g., /createRecipe, /likeRecipe, etc.
-  app.post('/:action', postRoutes);
+
+  // post requests come in the /type format with the additions in the body in json
+  // e.g., /recipe will add a new recipe, /group a new group, /user a new user
+  app.post('/:type', postRoutes);
 
 };
