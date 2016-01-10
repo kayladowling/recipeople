@@ -6,6 +6,7 @@ module.exports = {
   findRecipe: function (req, res) {
     var query = {};
     var field = req.params.prop;
+    if (field === '_id') field = 'id';
     var value = req.params.query;
     if (field && value) query[field] = value;
 
