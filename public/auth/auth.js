@@ -2,7 +2,10 @@ angular.module('Recipeoples.auth', [])
 
 
 .controller('AuthController', function ($scope, $rootScope, $location, $window, AuthFactory) {
+  // Hacky way to logout. Whenever you navigate to the signin page,
+  // the currentUser and your cookie are deleted.
   $rootScope.currentUser = null;
+  $window.localStorage.removeItem('com.recipeople');
 
   // Passes in the user to be authenticated, either as new or returning.
   $scope.submit = function() {
