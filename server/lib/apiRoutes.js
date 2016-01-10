@@ -16,7 +16,9 @@ var postRoutes = function (req, res) {
 
 var apiTypes = {
   'get': {
-    'recipes': recipeController.findRecipe
+    'recipes': recipeController.findRecipe,
+    // api call for /users checks for a token and then sends back data for that user
+    'users': userController.checkToken
   },
   'post': {
     'recipes': recipeController.createRecipe
@@ -33,6 +35,8 @@ module.exports = function (app) {
   // e.g., /recipes/title/Fried Pickles
   app.get('/:type/:prop/:query', getRoutes);
 
+
+  // handles the sign up / sign in form authorization and token sending
   app.post('/users/signin', userController.signIn);
   app.post('/users/signup', userController.signUp);
 
