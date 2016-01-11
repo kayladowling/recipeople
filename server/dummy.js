@@ -1,6 +1,6 @@
 var User = require('./db/models/user.js');
 var Recipe = require('./db/models/recipe.js');
-var Group = require('./db/models.group.js');
+var Group = require('./db/models/group.js');
 
 
 var pashal =  {
