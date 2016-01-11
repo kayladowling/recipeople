@@ -61,6 +61,18 @@ angular.module('Recipeoples.services', [])
     });
   };
 
+  var userByToken = function(){
+     return $http({
+      method: 'GET',
+      url: '/api/users'
+    })
+    .then(function(res){
+      console.log('Got user from db:', res.data);
+      return res.data;
+    });
+  };
+  
+
 
   /******** RECIPES ********/
 
@@ -194,7 +206,7 @@ angular.module('Recipeoples.services', [])
       url: '/' //'/api/groups/members/' + memberId  // <-- uncomment when ready
     })
     .then(function(res){
-      console.log('Got groups with memberId', memberId, 'from db:', res.data);
+      console.log('Got groups with memberId', memberId, 'from db:');
       return [dummyGroup];  // <-- delete once resolved
       return res.data[0];
     });
@@ -218,6 +230,7 @@ angular.module('Recipeoples.services', [])
   return {
     userById: userById,
     usersByName: usersByName,
+    userByToken:userByToken,
     recipeById: recipeById,
     recipesByTitle: recipesByTitle,
     recipesByAuthor: recipesByAuthor,
