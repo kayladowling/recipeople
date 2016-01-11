@@ -17,7 +17,7 @@ angular.module('Recipeoples.landing', [])
   };
 
    
-  // $scope.groups = dummyRecipe.groups;
+  $scope.groups = dummyRecipe.groups;
    $scope.recipes = [];
    for (var i = 0; i < 5; i++) {
     $scope.recipes.push(Object.create(dummyRecipe));
@@ -25,10 +25,14 @@ angular.module('Recipeoples.landing', [])
  
    
    //TO DO : Get the REAL GROUP Data for dropdown
- 
-   $scope.createGroup = function($scope) {
-    console.log("$Scope Data" +$scope.data);
-     CreateGroupFactory.createGroup($scope.data);
+   $scope.testing = function(data) {
+    console.log(data);
+   }
+
+   $scope.createGroup = function(data) {
+    var newData = {name:data};
+    console.log(data);
+    CreateGroupFactory.createGroup(newData);
    };
  
  })
@@ -41,7 +45,7 @@ angular.module('Recipeoples.landing', [])
          data: data
        })
        .then(function(response) {
-        console.log("From POST: " + data);
+        console.log("From POST: " + response.data);
          return response.data;
        });
    };
