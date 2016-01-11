@@ -8,7 +8,7 @@ angular.module('Recipeoples.post', [])
   };
 })
 
-.factory('PostRecipeFactory', function($http) {
+.factory('PostRecipeFactory', function($http, $location) {
   var post = function(data) {
     return $http({
         method: 'POST',
@@ -16,7 +16,7 @@ angular.module('Recipeoples.post', [])
         data: data
       })
       .then(function(response) {
-        return response.data;
+      $location.path('/profile');
       });
   }
   return {
