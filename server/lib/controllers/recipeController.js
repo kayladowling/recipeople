@@ -1,12 +1,13 @@
 var Recipe = require('../../db/models/recipe.js');
 var util = require('../util.js');
-var jwt = require('jwt-simple');
+var url = require('url');
 
 module.exports = {
   findRecipe: function (req, res) {
     var query = {};
     var field = req.params.prop;
     var value = req.params.query;
+    var filter = url.parse(req.url, true).query;
     if (field && value) query[field] = value;
 
 
@@ -21,13 +22,13 @@ module.exports = {
       });
   },
   createRecipe: function (req, res) {
-    var token = req.headers['x-access-token'];
+    var user = util.decodeToken(req);
     var params = {
       title: req.body.title,
       image_url: req.body.image_url || '',
       ingredients: req.body.ingredients || [],
       directions: req.body.directions || '',
-      author: jwt.decode(token, 'nyannyannyan')._id,
+      author: user._id,
       likedBy: req.body.likedBy || [],
       dislikedBy: req.body.dislikedBy || [],
       groups: req.body.groups || [],
@@ -36,7 +37,7 @@ module.exports = {
 
     Recipe.create(params)
       .then(function(createdRecipe) {
-        res.body = 'Successfully created recipe';
+        res.body = createdRecipe;
         util.sendResponse(req, res, 201);
       })
     .catch(function(err) {
@@ -44,8 +45,17 @@ module.exports = {
       util.sendResponse(req, res, 404);
     })
   },
-  recipeToGroup: function (req, res) {
-
+  updateRecipe: function (req, res) {
+    var recipeId = req.body.recipeId;
+    var groupId = req.body.groupId;
+    Recipe.findOne({_id: recipeId}).exec()
+      .then(function(recipe) {
+        recipe.groups.push(groupId);
+        recipe.save()
+          .then(function(saved) {
+            util.sendResponse(req, res, 200);
+          });
+      });
   }
 };
 
