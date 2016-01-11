@@ -10,7 +10,7 @@
        <input class='form-control input-lg' type='text'ng-model='recipe.title'required=''> <br>
       <!--   image_url-->
       <label for='formGroupInputLarge'>Image</label>
-      <input class='form-control input-lg' type='text'ng-model='recipe.image_url'><br>
+      <input class='form-control input-lg' placeholder='example: https://website.com/image' type='text'ng-model='recipe.image_url'><br>
       <!--   ingredients -->
       <label for='formGroupInputLarge'>Ingredients</label>
       <input class='form-control input-lg' type='ingredientsInput'ng-model='recipe.ingredients'placeholder='example: 1 cup of flour, 1 tablespoon of sugar' required=''><br>
@@ -21,9 +21,8 @@
       <!-- Should this be a drop down option? -->
       <label for='formGroupInputLarge'>Share with Group</label>
       <input class='form-control input-lg' type='text' ng-model='recipe.groups' placeholder='example: group1, group2, group3' required=''><br>
-      <!-- review -->
-      <label for='formGroupInputLarge'>Recipe Review</label>
-      <input class='form-control input-lg' type='text'ng-model='recipe.reviews' ><br>
+
+      <!-- submit button -->
       <button class='btn-warning' type='submit'>Submit</button>
 
 </div>

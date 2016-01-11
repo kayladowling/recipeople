@@ -8,15 +8,15 @@ angular.module('Recipeoples.post', [])
   };
 })
 
-.factory('PostRecipeFactory', function($http) {
+.factory('PostRecipeFactory', function($http, $location) {
   var post = function(data) {
     return $http({
         method: 'POST',
-        url: '/api/post',
+        url: '/api/recipes',
         data: data
       })
       .then(function(response) {
-        return response.data;
+      $location.path('/profile');
       });
   }
   return {
