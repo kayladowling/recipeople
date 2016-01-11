@@ -1,4 +1,5 @@
 var Group = require('../../db/models/group.js');
+var User = require('../../db/models/user.js');
 var util = require('../util.js');
 
 module.exports = {
@@ -47,7 +48,7 @@ module.exports = {
   },
   updateGroup: function (req, res, next) {
     if (req.body.currentUser) {
-      var user = util.decode(req);
+      var user = util.decodeToken(req);
     }
     var groupId = req.body.groupId;
     Group.findOne({_id: groupId}).exec()
@@ -55,7 +56,14 @@ module.exports = {
         group.members.push(user._id);
         group.save()
           .then(function(saved) {
-            util.sendResponse(req, res, 200);
+            User.findOne({_id: user._id}).exec()
+              .then(function(foundUser) {
+                foundUser.groups.push(groupId);
+                foundUser.save()
+                  .then(function(saved) {
+                    util.sendResponse(req, res, 200);
+                  });
+              });
           });
       });
   }

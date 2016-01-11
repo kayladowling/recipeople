@@ -1,4 +1,5 @@
 var Recipe = require('../../db/models/recipe.js');
+var Group = require('../../db/models/group.js');
 var util = require('../util.js');
 var url = require('url');
 
@@ -49,40 +50,20 @@ module.exports = {
     var recipeId = req.body.recipeId;
     var groupId = req.body.groupId;
     Recipe.findOne({_id: recipeId}).exec()
-      .then(function(recipe) {
-        recipe.groups.push(groupId);
-        recipe.save()
+      .then(function(foundRecipe) {
+        foundRecipe.groups.push(groupId);
+        foundRecipe.save()
           .then(function(saved) {
-            util.sendResponse(req, res, 200);
+            Group.findOne({_id: groupId}).exec()
+              .then(function(group) {
+                group.recipes.push(recipeId);
+                group.save()
+                  .then(function(saved) {
+                    util.sendResponse(req, res, 200);
+                  });
+              });
           });
       });
   }
 };
 
-
-// var somethingWithDB = function(req, res) {
-
-//   // mock data, real data would come from db
-//   // var data = [{
-//   //   id: req.params.id,
-//   //   title: 'A Test Recipe',
-//   //   ingredients: ['1/2 apple', '1/2 orange', '2 cups spinach'],
-//   //   author: { id: 1, username: 'Matt'}
-//   // }];
-//   // res.body = data;
-//   Recipe.find({ 'title': 'Fried Pickles'}, function (err, recipe) {
-//     console.log(recipe);
-//     res.body = [recipe];
-//     util.sendResponse(req, res, 200);
-//   });
-//   /*console.log('type: ', req.params.type);
-//   console.log('prop: ', req.params.prop);
-//   console.log('query: ', req.params.query);
-//   util.sendResponse(req, res);*/
-// };
-
-// var somethingElseWithDB = function (req, res) {
-//   console.log(req.params.action); // createRecipe
-//   console.log(req.body); // {}
-//   util.sendResponse(req, res, 201);
-// };
