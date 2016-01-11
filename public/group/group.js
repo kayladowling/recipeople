@@ -4,7 +4,7 @@ angular.module('Recipeoples.group', [])
   $scope.group = {
     name: "Carnivores",
     members: ['Bear', 'Tiger', 'Alligator'],
-    recipes: ['Baby Rabbit Rissotto', 'Fresh BackPacker', 'Zebra']
+    recipes: ['Awesome Burger', 'Spicy Tuna Rolls', 'Sloe Gin Fizz']
   };
 
   $scope.hello = "group template";
