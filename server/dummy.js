@@ -13,7 +13,7 @@ var pashal =  {
   ],
   directions: 'Add Pashal greens, Mustard Seeds and walnuts to frying pan. Stir fry for 20 minutes" + 
   " and serve! Ths recipe goes very well as a side dish to pork and cactuar. My family Loves this" + 
-  " recipe and I know you will too!',
+  " recipe and I know you will too!",
   author: 'Cloud Strife',
   likedBy: ['Vincent Valentine'],
   groups: ['Midgar'],
@@ -111,6 +111,7 @@ var tuna = {
 };
 
 
+var recipes = [pashal, cactuar, tuna, sandwich, sloe];
 
 module.exports.addDummyRecipes = function() {
     recipes.forEach(function(recipe) {
