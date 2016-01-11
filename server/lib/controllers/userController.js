@@ -54,8 +54,11 @@ module.exports = {
       next(new Error('No access token!'));
     } else {
       var user = util.decode(req);
-        res.body = user;
-        util.sendResponse(req, res, 200);
-      }
+      User.findOne({_id: user._id}).exec()
+        .then(function(foundUser) {
+          res.body = foundUser;
+          util.sendResponse(req, res, 200);
+        });
+    }
   }
 }
