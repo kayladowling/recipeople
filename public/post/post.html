@@ -1,21 +1,32 @@
 <div ng-controller='PostController'>
-   <div class= 'postRecipe'>
-      <h1>Post Recipe</h1>
+   <div class= 'panel panel-warning'>
+     <div class='panel-heading'>
+         <h2 class='panel-title'>Post a Recipe</h3>
+      </div>
+      <div class='panel-body'>
       <form name='postRecipeForm' ng-submit='postRecipe()'>
       <!-- title -->
-      Recipe Name: <input type='text'ng-model='recipe.title'required=''> <br>
+      <label for='formGroupInputLarge'>Recipe Name</label>
+       <input class='form-control input-lg' type='text'ng-model='recipe.title'required=''> <br>
       <!--   image_url-->
-      Photo: <input type='text'ng-model='recipe.image_url'><br>
+      <label for='formGroupInputLarge'>Image</label>
+      <input class='form-control input-lg' type='text'ng-model='recipe.image_url'><br>
       <!--   ingredients -->
-      Ingredients: <input type='text'ng-model='recipe.ingredients' required=''><br>
+      <label for='formGroupInputLarge'>Ingredients</label>
+      <input class='form-control input-lg' type='ingredientsInput'ng-model='recipe.ingredients'placeholder='example: 1 cup of flour, 1 tablespoon of sugar' required=''><br>
       <!--   directions -->
-      Directions: <input type='text'ng-model='recipe.directions' required=''><br>
+      <label for='formGroupInputLarge'>Directions</label>
+      <input class='form-control input-lg' type='text' ng-model='recipe.directions' placeholder='example: preheat oven, put dry ingredients in a large bowl'required=''><br>
       <!--   groups: Array[obj] -->
       <!-- Should this be a drop down option? -->
-      Share with Group: <input type='text'ng-model='recipe.groups' required=''><br>
+      <label for='formGroupInputLarge'>Share with Group</label>
+      <input class='form-control input-lg' type='text' ng-model='recipe.groups' placeholder='example: group1, group2, group3' required=''><br>
       <!-- review -->
-      Recipe Review: <input type='text'ng-model='recipe.reviews' required=''><br>
-      <button type='submit'>Submit</button>
+      <label for='formGroupInputLarge'>Recipe Review</label>
+      <input class='form-control input-lg' type='text'ng-model='recipe.reviews' ><br>
+      <button class='btn-warning' type='submit'>Submit</button>
+
+</div>
    </div>
 </div>
     
