@@ -1,5 +1,6 @@
 angular.module('Recipeoples.services', [])
 
+
 .factory('getFactory', function($http){
 
   // TODO: Delete these dummy objects once all DB routes are functioning.
@@ -24,24 +25,19 @@ angular.module('Recipeoples.services', [])
     groups: ['Burgers Anonymous', 'Moose Lodge', 'HiRs'],
     reviews: []
   };
-  var dummyGroup = {
-    name: 'Comicon',
-    members: [],
-    recipes: []
-  };
 
 
   /******** USERS ********/
 
   // TODO: Fix this once database paths are ready.
   // Returns a single user by their id.
-  var userById = function (id) {
+  var userById = function (userId) {
     return $http({
       method: 'GET',
-      url: '/' // '/api/users/_id/' + id  // <-- uncomment when ready
+      url: '/' // '/api/users/_id/' + userId  // <-- uncomment when ready
     })
     .then(function(res){
-      console.log('Got user with id', id, 'from db:', res.data);
+      console.log('Got user with id', userId, 'from db:', res.data);
       return dummyUser;  // <-- delete once path is ready
       return res.data[0];
     });
@@ -62,34 +58,34 @@ angular.module('Recipeoples.services', [])
   };
 
 
+  /******** GROUPS ********/
+
+  // Returns a single group by their id.
+  var groupById = function (groupId) {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/_id/' + groupId
+    })
+    .then(function(res){
+      console.log('Got group with id', groupId, 'from db:', res.data);
+      return res.data[0];
+    });
+  };
+
+  // Returns a an array of groups which match the name.
+  var groupsByName = function (name) {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/name/' + name
+    })
+    .then(function(res){
+      console.log('Got groups with name', name, 'from db:', res.data);
+      return res.data[0];
+    });
+  };
+
+
   /******** RECIPES ********/
-
-  // Returns a bunch of recipes.
-  var recipes = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/recipes/'
-    })
-    .then(function(res){
-      console.log('Got recipes from db:', res.data);
-      return res.data;
-    });
-  };
-
-  // Returns all recipes posted since a certain time.
-  var recipesSince = function (time) {
-    return $http({
-      method: 'GET',
-      url: '/api/recipes/',
-      data: {
-        since: time
-      }
-    })
-    .then(function(res){
-      console.log('Got recipes since', time, 'from db:', res.data);
-      return res.data;
-    });
-  };
 
   // Returns a single recipe by their id.
   var recipeById = function (id) {
@@ -127,90 +123,30 @@ angular.module('Recipeoples.services', [])
     });
   };
 
-  // TODO: Get dummy data with groups, and make sure query is correct.
-  // Returns an array of recipes which match the group.
-  var recipesByGroup = function (groupId) {
+  // Returns a bunch of recipes, ranked by the server.
+  var recipesRanked = function () {
     return $http({
       method: 'GET',
-      url: '/api/recipes/group/' + groupId
+      url: '/api/recipes/'
     })
     .then(function(res){
-      console.log('Got recipes with groupId', groupId, 'from db:', res.data);
-      return [dummyRecipe];  // <-- delete once resolved
+      console.log('Got recipes from db:', res.data);
       return res.data;
     });
   };
 
-  // TODO: Get dummy data with likedBy array, and make sure query is correct.
-  // Returns an array of recipes which match the group.
-  var recipesByLiked = function (likedById) {
+  // Returns all recipes posted since a certain time.
+  var recipesSince = function (time) {
     return $http({
       method: 'GET',
-      url: '/api/recipes/likedBy/' + likedById
+      url: '/api/recipes/',
+      data: {
+        since: time
+      }
     })
     .then(function(res){
-      console.log('Got recipes with likedById', likedById, 'from db:', res.data);
-      return [dummyRecipe];  // <-- delete once resolved
+      console.log('Got recipes since', time, 'from db:', res.data);
       return res.data;
-    });
-  };
-
-
-  /******** GROUPS ********/
-
-  // TODO: Fix this once database paths are ready.
-  // Returns a single group by their id.
-  var groupById = function (id) {
-    return $http({
-      method: 'GET',
-      url: '/' //'/api/groups/_id/' + id  // <-- uncomment when ready
-    })
-    .then(function(res){
-      console.log('Got group with id', id, 'from db:', res.data);
-      return dummyGroup;  // <-- delete once path is ready
-      return res.data[0];
-    });
-  };
-
-  // TODO: Fix this once database paths are ready.
-  // Returns a an array of groups which match the name.
-  var groupsByName = function (name) {
-    return $http({
-      method: 'GET',
-      url: '/' //'/api/groups/name/' + name  // <-- uncomment when ready
-    })
-    .then(function(res){
-      console.log('Got groups with name', name, 'from db:', res.data);
-      return [dummyGroup];  // <-- delete once path is ready
-      return res.data[0];
-    });
-  };
-
-  // TODO: Get dummy data set up, and make sure this query is correct.
-  // Returns an array of recipes which match the group.
-  var groupsByMember = function (memberId) {
-    return $http({
-      method: 'GET',
-      url: '/' //'/api/groups/members/' + memberId  // <-- uncomment when ready
-    })
-    .then(function(res){
-      console.log('Got groups with memberId', memberId, 'from db:', res.data);
-      return [dummyGroup];  // <-- delete once resolved
-      return res.data[0];
-    });
-  };
-
-  // TODO: Get dummy data set up, and make sure this query is correct.
-  // Returns an array of recipes which match the group.
-  var groupsByRecipe = function (recipeId) {
-    return $http({
-      method: 'GET',
-      url: '/' //'/api/groups/recipes/' + recipeId  // <-- uncomment when ready
-    })
-    .then(function(res){
-      console.log('Got groups with recipeId', recipeId, 'from db:', res.data);
-      return [dummyGroup];  // <-- delete once resolved
-      return res.data[0];
     });
   };
 
@@ -218,14 +154,102 @@ angular.module('Recipeoples.services', [])
   return {
     userById: userById,
     usersByName: usersByName,
+    groupById: groupById,
+    groupsByName: groupsByName,
     recipeById: recipeById,
     recipesByTitle: recipesByTitle,
     recipesByAuthor: recipesByAuthor,
-    recipesByGroup: recipesByGroup,
-    recipesByLiked: recipesByLiked,
-    groupById: groupById,
-    groupsByName: groupsByName,
-    groupsByMember: groupsByMember,
-    groupsByRecipe: groupsByRecipe
+    recipesRanked: recipesRanked,
+    recipesSince: recipesSince,
   };
+})
+
+
+.factory('PostFactory', function($http, getFactory) {
+
+  // Temporary storage for groups that will be associated with a recipe later.
+  var reservedGroups;
+
+  // Helper function which makes group associations after recipe creation.
+  var associateGroups = function(recipeId) {
+    if (reservedGroups) {
+
+      // Hacky way to check if group names or id's were in the array, and swap in id's
+      if (reservedGroups[0].length !== 24 && reservedGroups[0].indexOf(' ') === -1) {
+        reservedGroups.forEach(function(name) {
+          name = getFactory.groupsByName(name)[0];
+        });
+      }
+
+      reservedGroups.forEach(function(groupId) {
+        recipeToGroup(recipeId, groupId);
+      });
+    }
+
+    reservedGroups = null;
+  };
+
+  // Create a new recipe in the database.
+  var newRecipe = function (recipe) {
+    if (recipe.groups && recipe.groups.length > 0) {
+      reservedGroups = recipe.groups;
+      recipe.groups = [];
+    }
+    return $http({
+      method: 'POST',
+      url: '/api/recipes/',
+      data: recipe
+    })
+    .then(function(res){
+      console.log('Posted new recipe', recipe.title, 'to db.');
+      associateGroups(res.data._id);
+      return res.data;
+    });
+  };
+
+  // Create a new group in the database.
+  var newGroup = function (group) {
+    return $http({
+      method: 'POST',
+      url: '/api/groups/',
+      data: recipe
+    })
+    .then(function(res){
+      console.log('Posted new group', group.name, 'to db.');
+      return res.data;
+    });
+  };
+
+  // Allow the current user to join a group in the database.
+  var joinGroup = function (groupId) {
+    return $http({
+      method: 'POST',
+      url: '/api/groups/',
+      data: {
+        currentUser: true,
+        groupId: groupId
+      }
+    })
+    .then(function(res){
+      console.log('Posted new group', group.name, 'to db.');
+      return res.data;
+    });
+  };
+
+  // Add a recipe to a group.
+  var recipeToGroup = function (recipeId, groupId) {
+    return $http({
+      method: 'POST',
+      url: '/api/groups/',
+      data: {
+        recipeId: recipeId,
+        groupId: groupId
+      }
+    })
+    .then(function(res){
+      console.log('Posted new group', group.name, 'to db.');
+      return res.data;
+    });
+  };
+
 });
