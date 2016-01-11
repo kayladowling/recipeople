@@ -2,6 +2,7 @@ var util = require('./util.js');
 var Recipe = require('../db/models/recipe.js');
 var recipeController = require('./controllers/recipeController.js');
 var userController = require('./controllers/userController.js');
+var groupController = require('./controllers/groupController.js');
 
 // determines the type of get request and routes to the correct controller
 var getRoutes = function(req, res) {
@@ -18,10 +19,12 @@ var apiTypes = {
   'get': {
     'recipes': recipeController.findRecipe,
     // api call for /users checks for a token and then sends back data for that user
-    'users': userController.checkToken
+    'users': userController.checkToken,
+    'groups': groupController.findGroup
   },
   'post': {
-    'recipes': recipeController.createRecipe
+    'recipes': recipeController.createRecipe,
+    'groups': groupController.createGroup
   }
 };
 
