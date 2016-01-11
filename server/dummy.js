@@ -136,11 +136,6 @@ recipes.push({
 
 users = [
   {
-    username: 'Test',
-    testid: 1
-  },
-
-  {
     username: 'Cloud Strife',
     password: 'eye<3Aeris',
     image_url: 'http://static.giantbomb.com/uploads/square_small/0/9133/1910287-cloudinmagicwaterreaches.jpg',
