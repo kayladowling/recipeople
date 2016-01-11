@@ -27,7 +27,6 @@ angular.module('Recipeoples.profile', [])
 .factory('ProfileFactory', function($http, $location, $rootScope){
 
   var goToRecipe = function (title){
-
    return $http({
     method: 'GET',
     url: "/api/recipes/title/" + title

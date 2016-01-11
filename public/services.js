@@ -271,6 +271,7 @@ angular.module('Recipeoples.services', [])
     .then(function(res){
       console.log('Posted new group', group.name, 'to db.');
       return res.data;
+
     });
   };
 
@@ -291,9 +292,11 @@ angular.module('Recipeoples.services', [])
   };
 
   return {
+
     newRecipe: newRecipe,
     newGroup: newGroup,
     joinGroup: joinGroup,
     recipeToGroup: recipeToGroup
+
   };
 });
