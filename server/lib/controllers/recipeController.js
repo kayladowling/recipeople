@@ -26,7 +26,11 @@ module.exports = {
       image_url: req.body.image_url || '',
       ingredients: req.body.ingredients || [],
       directions: req.body.directions || '',
-      author: req.body.author || ''
+      author: req.body.author || '',
+      likedBy: req.body.likedBy || [],
+      dislikedBy: req.body.dislikedBy || [],
+      groups: req.body.groups || [],
+      reviews: req.body.reviews || []
     };
 
     Recipe.find(params).exec()

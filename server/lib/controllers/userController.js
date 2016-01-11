@@ -1,5 +1,6 @@
 var User = require('../../db/models/user.js');
 var jwt = require('jwt-simple');
+var util = require('../util.js');
 
 module.exports = {
   signIn: function (req, res, next) {
@@ -47,5 +48,22 @@ module.exports = {
             });
         }
     });
+  },
+  checkToken: function (req, res, next) {
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      next(new Error('No access token!'));
+    } else {
+      var user = jwt.decode(token, 'nyannyannyan');
+      User.findOne({username: user.username}, 'username image_url liked disliked groups authored friends').exec()
+        .then(function(user) {
+          if (!user) {
+            next(new Error('Invalid token'));
+          } else {
+            res.body = user;
+            util.sendResponse(req, res, 200);
+          }
+        });
+    }
   }
 }
