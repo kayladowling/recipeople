@@ -6,7 +6,6 @@ module.exports = {
   findRecipe: function (req, res) {
     var query = {};
     var field = req.params.prop;
-    if (field === '_id') field = 'id';
     var value = req.params.query;
     if (field && value) query[field] = value;
 
@@ -27,7 +26,11 @@ module.exports = {
       image_url: req.body.image_url || '',
       ingredients: req.body.ingredients || [],
       directions: req.body.directions || '',
-      author: req.body.author || ''
+      author: req.body.author || '',
+      likedBy: req.body.likedBy || [],
+      dislikedBy: req.body.dislikedBy || [],
+      groups: req.body.groups || [],
+      reviews: req.body.reviews || []
     };
 
     Recipe.find(params).exec()
