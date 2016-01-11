@@ -12,7 +12,7 @@ angular.module('Recipeoples.post', [])
   var post = function(data) {
     return $http({
         method: 'POST',
-        url: '/api/post',
+        url: '/api/recipes/',
         data: data
       })
       .then(function(response) {
