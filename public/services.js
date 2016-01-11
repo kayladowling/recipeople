@@ -203,11 +203,10 @@ angular.module('Recipeoples.services', [])
   var groupsByMember = function (memberId) {
     return $http({
       method: 'GET',
-      url: '/' //'/api/groups/members/' + memberId  // <-- uncomment when ready
+      url: '/api/groups/members/' + memberId
     })
     .then(function(res){
       console.log('Got groups with memberId', memberId, 'from db:');
-      return [dummyGroup];  // <-- delete once resolved
       return res.data[0];
     });
   };
