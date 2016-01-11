@@ -15,7 +15,20 @@ module.exports = {
           user.checkPassword(password, function(isMatch) {
             if (isMatch) {
               var token = jwt.encode(user, 'nyannyannyan');
-              res.json({token: token});
+              res.json(
+                {
+                  token: token,
+                  user: {
+                    username: user.username,
+                    image_url: user.image_url,
+                    liked: user.liked,
+                    disliked: user.disliked,
+                    groups: user.groups,
+                    authored: user.authored,
+                    friends: user.friends
+                  }
+                }
+              );
             } else {
               return next(new Error('Password did not match'));
             }
