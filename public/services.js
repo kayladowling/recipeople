@@ -256,7 +256,7 @@ angular.module('Recipeoples.services', [])
   var recipeToGroup = function (recipeId, groupId) {
     return $http({
       method: 'POST',
-      url: '/api/groups/',
+      url: '/api/recipes/',
       data: {
         recipeId: recipeId,
         groupId: groupId
