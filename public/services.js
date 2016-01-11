@@ -46,6 +46,16 @@ angular.module('Recipeoples.services', [])
     });
   };
 
+  var userByToken = function(){
+     return $http({
+      method: 'GET',
+      url: '/api/users'
+    })
+    .then(function(res){
+      console.log('Got user from db:', res.data);
+      return res.data;
+    });
+  };
 
   /******** GROUPS ********/
 
@@ -72,7 +82,17 @@ angular.module('Recipeoples.services', [])
       return res.data[0];
     });
   };
-
+  
+  var groupsByMember = function (member) {
+    return $http({
+      method: 'GET',
+      url: '/api/groups/member/' + member
+    })
+    .then(function(res){
+      console.log('Got groups with member', member, 'from db:', res.data);
+      return res.data[0];
+    });
+  };
 
   /******** RECIPES ********/
 
@@ -170,8 +190,10 @@ angular.module('Recipeoples.services', [])
   return {
     userById: userById,
     usersByName: usersByName,
+    userByToken:userByToken,
     groupById: groupById,
     groupsByName: groupsByName,
+    groupsByMember:groupsByMember,
     recipeById: recipeById,
     recipesByTitle: recipesByTitle,
     recipesByAuthor: recipesByAuthor,
