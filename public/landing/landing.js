@@ -26,9 +26,9 @@ angular.module('Recipeoples.landing', [])
    
    //TO DO : Get the REAL GROUP Data for dropdown
  
- 
-   $scope.createGroup = function(data) {
-     CreateGroupFactory.createGroup(data);
+   $scope.createGroup = function($scope) {
+    console.log("$Scope Data" +$scope.data);
+     CreateGroupFactory.createGroup($scope.data);
    };
  
  })
@@ -41,6 +41,7 @@ angular.module('Recipeoples.landing', [])
          data: data
        })
        .then(function(response) {
+        console.log("From POST: " + data);
          return response.data;
        });
    };
