@@ -5,26 +5,36 @@ var userController = require('./controllers/userController.js');
 var groupController = require('./controllers/groupController.js');
 
 // determines the type of get request and routes to the correct controller
-var getRoutes = function(req, res) {
+var getRoutes = function(req, res, next) {
   var type = req.params.type;
-  apiTypes.get[type](req, res);
+  apiTypes.get[type](req, res, next);
 };
 
-var postRoutes = function (req, res) {
+var postRoutes = function (req, res, next) {
   var type = req.params.type;
-  apiTypes.post[type](req, res);
+  if (req.body.groupId) {
+    apiTypes.post.update[type](req, res, next);
+  } else {
+    apiTypes.post.create[type](req, res, next);
+  }
 };
 
 var apiTypes = {
   'get': {
     'recipes': recipeController.findRecipe,
     // api call for /users checks for a token and then sends back data for that user
-    'users': userController.checkToken,
+    'users': userController.currentUser,
     'groups': groupController.findGroup
   },
   'post': {
-    'recipes': recipeController.createRecipe,
-    'groups': groupController.createGroup
+    'create': {
+      'recipes': recipeController.createRecipe,
+      'groups': groupController.createGroup
+      },
+    'update': {
+      'recipes': recipeController.updateRecipe,
+      'groups': groupController.updateGroup,
+    }
   }
 };
 
