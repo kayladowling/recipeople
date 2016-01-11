@@ -44,5 +44,19 @@ module.exports = {
             });
         }
       });
+  },
+  updateGroup: function (req, res, next) {
+    if (req.body.currentUser) {
+      var user = util.decode(req);
+    }
+    var groupId = req.body.groupId;
+    Group.findOne({_id: groupId}).exec()
+      .then(function(group) {
+        group.members.push(user._id);
+        group.save()
+          .then(function(saved) {
+            util.sendResponse(req, res, 200);
+          });
+      });
   }
 };
