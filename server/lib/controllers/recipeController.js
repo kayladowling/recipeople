@@ -1,6 +1,6 @@
 var Recipe = require('../../db/models/recipe.js');
 var util = require('../util.js');
-
+var jwt = require('jwt-simple');
 
 module.exports = {
   findRecipe: function (req, res) {
@@ -21,36 +21,31 @@ module.exports = {
       });
   },
   createRecipe: function (req, res) {
+    var token = req.headers['x-access-token'];
     var params = {
       title: req.body.title,
       image_url: req.body.image_url || '',
       ingredients: req.body.ingredients || [],
       directions: req.body.directions || '',
-      author: req.body.author || '',
+      author: jwt.decode(token, 'nyannyannyan')._id,
       likedBy: req.body.likedBy || [],
       dislikedBy: req.body.dislikedBy || [],
       groups: req.body.groups || [],
       reviews: req.body.reviews || []
     };
 
-    Recipe.find(params).exec()
-      .then(function(recipe) {
-        if (recipe.length === 0) {
-          var newRecipe = new Recipe(params);
-          newRecipe.save()
-            .then(function(createdRecipe) {
-              res.body = 'Successfully created recipe';
-              util.sendResponse(req, res, 201);
-            });
-        } else {
-          res.body = 'Recipe already exists';
-          util.sendResponse(req, res, 404);
-        }
+    Recipe.create(params)
+      .then(function(createdRecipe) {
+        res.body = 'Successfully created recipe';
+        util.sendResponse(req, res, 201);
       })
-      .catch(function(err) {
-        console.log(err);
-        util.sendResponse(req, res, 404);
-      })
+    .catch(function(err) {
+      console.log(err);
+      util.sendResponse(req, res, 404);
+    })
+  },
+  recipeToGroup: function (req, res) {
+
   }
 };
 
