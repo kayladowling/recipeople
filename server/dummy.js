@@ -11,9 +11,9 @@ var pashal =  {
     '2tsp Mustard seed', 
     '1/4 cup walnuts'
   ],
-  directions: 'Add Pashal greens, Mustard Seeds and walnuts to frying pan. Stir fry for 20 minutes" + 
-  " and serve! Ths recipe goes very well as a side dish to pork and cactuar. My family Loves this" + 
-  " recipe and I know you will too!",
+  directions: 'Add Pashal greens, Mustard Seeds and walnuts to frying pan. Stir fry for 20 minutes' + 
+  ' and serve! Ths recipe goes very well as a side dish to pork and cactuar. My family Loves this' + 
+  ' recipe and I know you will too!',
   author: 'Cloud Strife',
   likedBy: ['Vincent Valentine'],
   groups: ['Midgar'],
@@ -45,7 +45,7 @@ var cactuar = {
 var sloe = {
   title: 'Sloe Gin Fizz',
   image_url: 'http://www.inspiredtaste.net/wp-content/uploads/2012/12/Sloe-Gin-Fizz-Cocktail-Recipe-1.jpg',
-  ingredients: ['1 ounce Sloe Gin', '1 ounce Gin', '1 ounce lemon juice', '1 teaspoon simple syrup'
+  ingredients: ['1 ounce Sloe Gin', '1 ounce Gin', '1 ounce lemon juice', '1 teaspoon simple syrup' +
   '2 ounces club soda', 'lemon wedge', 'ice'],
   directions: 'Add sloe gin, regular gin, 1/2 ounce of lemon juice and simple syrup' +
   ' (or sugar) to a cocktail shaker filled half way with ice. Shake vigorously until' +
