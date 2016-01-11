@@ -18,7 +18,7 @@ Recipe.find({}).then(function(recipes) {
 });
 User.find({}).then(function(users) {
   if (users.length === 0) {
-    dummyData.addDummyUser();
+    dummyData.addUsers();
   }
 });
 app.use('/', express.static(__dirname + '/../public'));
