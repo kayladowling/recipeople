@@ -39,8 +39,8 @@ module.exports = {
           util.sendResponse(req, res, 404);
         } else {
           Group.create(params)
-            .then(function(created) {
-              res.body = 'Group created';
+            .then(function(createdGroup) {
+              res.body = createdGroup;
               util.sendResponse(req, res, 201);
             });
         }

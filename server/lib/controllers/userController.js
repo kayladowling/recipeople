@@ -51,7 +51,7 @@ module.exports = {
     if (!token) {
       next(new Error('No access token!'));
     } else {
-      var user = util.decode(req);
+      var user = util.decodeToken(req);
       User.findOne({_id: user._id}).exec()
         .then(function(foundUser) {
           res.body = foundUser;
