@@ -93,35 +93,9 @@ angular.module('Recipeoples.services', [])
       return res.data;
     });
   };
+  
 
   /******** RECIPES ********/
-
-  // Returns a bunch of recipes.
-  var recipes = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/recipes/'
-    })
-    .then(function(res){
-      console.log('Got recipes from db:', res.data);
-      return res.data;
-    });
-  };
-
-  // Returns all recipes posted since a certain time.
-  var recipesSince = function (time) {
-    return $http({
-      method: 'GET',
-      url: '/api/recipes/',
-      data: {
-        since: time
-      }
-    })
-    .then(function(res){
-      console.log('Got recipes since', time, 'from db:', res.data);
-      return res.data;
-    });
-  };
 
   // Returns a single recipe by their id.
   var recipeById = function (id) {
