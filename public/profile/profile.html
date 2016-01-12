@@ -1,25 +1,37 @@
 <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div id = "hello" class = "col-md-4">
-<h4>Hello {{user.username}}!</h4>
+<div class = "hello" class = "col-md-4">
+<h1>Hello {{user.username}}!</h1>
 </div>
 
-<div id = "profilegroups" class = "col-md-4">
+
+<div class ="panel panel-warning" class ="col-md-4">
+<div class='panel-heading'>
 <h4>Your Groups:</h4>
+</div>
+<div class='panel-body'> 
   <ul>
     <li ng-repeat="group in usergroups">
       <p ng-click='goToGroup(group.name)'>{{group.name}}</p>
     </li>
   </ul>
+  </div>
+
 </div>
 
-<div id = "profilerecipes" class = "col-md-4">
+
+<div class ="panel panel-warning class" class="col-md-4">
+<div class='panel-heading'>
 <h4>Your Recipes:</h4>
+</div>
+<div class='panel-body'>
   <ul>
     <li ng-repeat="recipe in userrecipes">
     	<p ng-model= 'recipe.title' ng-click='goToRecipe(recipe.title)'>{{recipe.title}}</p>
     </li>
   </ul>
+  </div>
 </div>
+
 
 
