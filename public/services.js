@@ -84,7 +84,7 @@ angular.module('Recipeoples.services', [])
   var groupsByMember = function (member) {
     return $http({
       method: 'GET',
-      url: '/api/groups/member/' + member
+      url: '/api/groups/members/' + member
     })
     .then(function(res){
       console.log('Got groups with member', member, 'from db:', res.data);
