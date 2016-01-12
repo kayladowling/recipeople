@@ -1,6 +1,6 @@
 angular.module('Recipeoples.landing', [])
 
-.controller('LandingController', function($scope, $rootScope, getFactory, PostFactory) {
+.controller('LandingController', function($scope, $rootScope, $location, getFactory, PostFactory) {
   getFactory.userByToken().then(function(user) {
     $rootScope.currentUser = user;
     $rootScope.currentUser.groups.forEach(function(groupId) {
@@ -26,14 +26,16 @@ angular.module('Recipeoples.landing', [])
   }
 
   $scope.createGroup = function(groupname) {
+    console.log('creating a group');
     PostFactory.newGroup({
       name: groupname,
       members: [$rootScope.currentUser],
       recipes: []
     }).then(function(group) {
-      $Scope.focusGroup(group);
+      $scope.focusGroup(group);
       $rootScope.currentUser.groups.push(group);
       PostFactory.joinGroup(group._id);
+      $location.path('/group');
     });
   }
 

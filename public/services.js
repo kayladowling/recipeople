@@ -213,20 +213,21 @@ angular.module('Recipeoples.services', [])
     .then(function(res){
       console.log('Posted new recipe', recipe.title, 'to db.');
       associateGroups(res.data._id);
-      return res.data;
+      return res.data[0];
     });
   };
 
   // Create a new group in the database.
   var newGroup = function (group) {
+    console.log('attempting to make a new group');
     return $http({
       method: 'POST',
       url: '/api/groups/',
       data: group
     })
     .then(function(res){
-      console.log('Posted new group', group.name, 'to db.');
-      return res.data;
+      console.log('Posted new group', res.data.name, 'to db.');
+      return res.data[0];
     });
   };
 
@@ -241,7 +242,7 @@ angular.module('Recipeoples.services', [])
       }
     })
     .then(function(res){
-      console.log('Posted new group', group.name, 'to db.');
+      console.log('Joined group', groupId, 'to db.');
       return res.data;
 
     });
@@ -258,7 +259,7 @@ angular.module('Recipeoples.services', [])
       }
     })
     .then(function(res){
-      console.log('Posted new group', group.name, 'to db.');
+      console.log('Posted recipe', recipeId,'to group', groupId, 'in db.');
       return res.data;
     });
   };
