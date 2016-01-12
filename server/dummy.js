@@ -2,8 +2,31 @@ var User = require('./db/models/user.js');
 var Recipe = require('./db/models/recipe.js');
 var Group = require('./db/models/group.js');
 
+var recipes = require('./recipes.json');
 
-var pashal =  {
+var users = [];
+var groups = [];
+
+console.log(recipes[0]);
+
+recipes.forEach(function(recipe){
+  recipe.author = recipe.publisher;
+  delete recipe.publisher;
+  delete recipe.f2f_url;
+  delete recipe.source_url;
+  delete recipe.recipe_id;
+  delete recipe.social_rank;
+  delete recipe.publisher_url;
+  recipe.ingredients = ['A pound of stuff', 'A dose of things', 'A pinch of love'];
+  recipe.directions = 'Mix it all together.';
+  recipe.likedBy = [];
+  recipe.groups = [];
+  recipe.reviews = [];
+});
+
+console.log(recipes);
+
+recipes.push({
   title: 'Pashal Greens',
   image_url: 'http://www.gloryfoods.com/media/images/Fresh%20Garlic%20Greens.jpg',
   ingredients: [
@@ -18,9 +41,9 @@ var pashal =  {
   likedBy: ['Vincent Valentine'],
   groups: ['Midgar'],
   reviews: ['ZOMG these greens are amazing! - Vincent']
-};
+});
 
-var cactuar = {
+recipes.push({
   title: 'Fried Cactuar',
   image_url: 'http://media-cdn.tripadvisor.com/media/photo-s/07/3d/a6/2e/fried-cactus-appetizer.jpg',
   ingredients: [
@@ -39,10 +62,10 @@ var cactuar = {
   author: 'Cloud Strife',
   likedBy: ['Vicent Valentine', 'Tifa Lockheart'],
   groups: ['Golden Saucer', 'Midgar'],
-  reviews: ['This recipe doesn\'t have any reviews yet!'],
-};
+  reviews: ['This recipe doesn\'t have any reviews yet!']
+});
 
-var sloe = {
+recipes.push({
   title: 'Sloe Gin Fizz',
   image_url: 'http://www.inspiredtaste.net/wp-content/uploads/2012/12/Sloe-Gin-Fizz-Cocktail-Recipe-1.jpg',
   ingredients: ['1 ounce Sloe Gin', '1 ounce Gin', '1 ounce lemon juice', '1 teaspoon simple syrup' +
@@ -55,10 +78,10 @@ var sloe = {
   author: 'Tifa Lockheart',
   likedBy: ['Cloud Strife'],
   groups: ['Sector 7 Slums'],
-  reviews: ['This is a great recipe! - Cloud'],
-};
+  reviews: ['This is a great recipe! - Cloud']
+});
 
-var sandwich = {
+recipes.push({
   title: 'Knuckle Sandwich',
   image_url: 'http://cdn-image.myrecipes.com/sites/default/files/styles/300x300/public/hot-pastrami-sandwiches-su.jpg?itok=-ou5K_up',
   ingredients: [
@@ -78,9 +101,9 @@ var sandwich = {
   author: 'Tifa Lockheart',
   likedBy: ['Cloud Strife', 'Vincent Valentine'],
   groups: ['Golden Saucer']
-};
+});
 
-var tuna = {
+recipes.push({
   title: 'Spicy Tuna Rolls',
   image_url: 'http://www.justonecookbook.com/wp-content/uploads/2013/05/Spicy-Tuna-Roll.jpg',
   ingredients: [
@@ -107,11 +130,60 @@ var tuna = {
   author: 'Vincent Valentine',
   likedBy: ['Cloud Strife'],
   dislikedBy: ['Tifa Lockheart'],
-  groups: ['Golden Saucer'],
-};
+  groups: ['Golden Saucer']
+});
 
 
-var recipes = [pashal, cactuar, tuna, sandwich, sloe];
+users = [
+  {
+    username: 'Cloud Strife',
+    password: 'eye<3Aeris',
+    image_url: 'http://static.giantbomb.com/uploads/square_small/0/9133/1910287-cloudinmagicwaterreaches.jpg',
+    groups: ['Midgar', 'Sector 7 Slums', 'Golden Saucer'],
+    authored: ['Fried Cactuar', 'Pashal Greens'],
+    testid: 12,
+    friends: ['Tifa Lockheart', 'Vincent Valentine']
+  },
+
+  {
+    username: 'Tifa Lockheart',
+    password: 'chocobuckle',
+    image_url: 'http://static.comicvine.com/uploads/original/2/24772/435137-7ac_tifa_1.jpg',
+    groups: ['Sector 7 Slums', 'Golden Saucer'],
+    authored: ['Sloe Gin Fizz', 'Knuckle Sandwich'],
+    testid: 13,
+    friends: ['Cloud Strife']
+  },
+
+  {
+    username: 'Vincent Valentine',
+    password: 'ViniVidiVivi',
+    image_url: 'http://cdn.myanimelist.net/images/characters/16/46857.jpg',
+    groups: ['Midgar', 'Golden Saucer'],
+    authored: ['Spicy Tuna Rolls'],
+    frinds: ['Cloud Strife']
+  }
+];
+
+groups = [
+  {
+    name: 'Midgar',
+    members: ['Cloud Strife', 'Vincent Valentine'],
+    recipes: ['Spicy Tuna Rolls', 'Pahal Greens', 'Fried Cactuar']
+  },
+
+  {
+    name: 'Sector 7 Slums',
+    members: ['Tifa Lockheart', 'Cloud Strife'],
+    recipes: ['Sloe Gin Fizz']
+  },
+
+  {
+    name: 'Golden Saucer',
+    members: ['Vincent Valentine', 'Tifa Lockheart', 'Cloud Strife'],
+    recipes: ['Spicy Tuna Rolls', 'Knuckle Sandwich', 'Fried Cactuar']
+  }
+];
 
 module.exports.addDummyRecipes = function() {
     recipes.forEach(function(recipe) {
@@ -120,76 +192,16 @@ module.exports.addDummyRecipes = function() {
     });
 };
 
-var user = {
-  username: 'Test',
-  testid: 1
-};
-
-var cloud = {
-  username: 'Cloud Strife',
-  password: 'eye<3Aeris',
-  image_url: 'http://static.giantbomb.com/uploads/square_small/0/9133/1910287-cloudinmagicwaterreaches.jpg',
-  groups: ['Midgar', 'Sector 7 Slums', 'Golden Saucer'],
-  authored: ['Fried Cactuar', 'Pashal Greens'],
-  testid: 12,
-  friends: ['Tifa Lockheart', 'Vincent Valentine']
-};
-
-var tifa = {
-  username: 'Tifa Lockheart',
-  password: 'chocobuckle',
-  image_url: 'http://static.comicvine.com/uploads/original/2/24772/435137-7ac_tifa_1.jpg',
-  groups: ['Sector 7 Slums', 'Golden Saucer'],
-  authored: ['Sloe Gin Fizz', 'Knuckle Sandwich'],
-  testid: 13,
-  friends: ['Cloud Strife']
-}
-
-var vincent = {
-  username: 'Vincent Valentine',
-  password: 'ViniVidiVivi',
-  image_url: 'http://cdn.myanimelist.net/images/characters/16/46857.jpg',
-  groups: ['Midgar', 'Golden Saucer'],
-  authored: ['Spicy Tuna Rolls'],
-  frinds: ['Cloud Strife']
-}
-
-
-var midgar = {
-  name: 'Midgar',
-  members: ['Cloud Strife', 'Vincent Valentine'],
-  recipes: ['Spicy Tuna Rolls', 'Pahal Greens', 'Fried Cactuar']
-}
-
-var sector7 = {
-  name: 'Sector 7 Slums',
-  members: ['Tifa Lockheart', 'Cloud Strife'],
-  recipes: ['Sloe Gin Fizz']
-}
-
-var goldenSaucer = {
-  name: 'Golden Saucer',
-  members: ['Vincent Valentine', 'Tifa Lockheart', 'Cloud Strife'],
-  recipes: ['Spicy Tuna Rolls', 'Knuckle Sandwich', 'Fried Cactuar']
-}
-
 module.exports.addDummyGroups = function(){
-  var groups = [midgar, sector7, goldenSaucer];
   groups.forEach(function(group){
     var newGroup = new Group(group);
     newGroup.save();
   });
-}
+};
 
 module.exports.addUsers = function(){
-  var users = [cloud, tifa, vincent];
   users.forEach(function(user){
     var newUser = new User(user);
     newUser.save();
   });
-}
-
-module.exports.addDummyUser = function() {
-  var newUser = new User(user);
-  newUser.save();
 };

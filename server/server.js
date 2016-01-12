@@ -14,17 +14,17 @@ mongoose.Promise = Promise;
 mongoose.connect(mongoUri);
 // dummy data loading
 Recipe.find({}).then(function(recipes) {
-  if (recipes.length === 0) {
+  if (recipes.length < 20) {
     dummyData.addDummyRecipes();
   }
 });
 User.find({}).then(function(users) {
-  if (users.length === 0) {
+  if (users.length < 3) {
     dummyData.addUsers();
   }
 });
 Group.find({}).then(function(groups) {
-  if (groups.length === 0) {
+  if (groups.length < 3) {
     dummyData.addDummyGroups();
   }
 })
