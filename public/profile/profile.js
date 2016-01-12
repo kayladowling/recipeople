@@ -33,7 +33,7 @@ angular.module('Recipeoples.profile', [])
    })
     .then(function(res){
       console.log('goToGroup response data: ', res.data);
-      $rootScope.focusRecipe = res.data;
+      $rootScope.focusRecipe = res.data[0];
       $location.path('/recipe/')
     });
   };

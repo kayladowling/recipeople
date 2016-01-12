@@ -79,7 +79,7 @@ angular.module('Recipeoples.services', [])
     })
     .then(function(res){
       console.log('Got groups with name', name, 'from db:', res.data);
-      return res.data[0];
+      return res.data;
     });
   };
   
@@ -90,7 +90,7 @@ angular.module('Recipeoples.services', [])
     })
     .then(function(res){
       console.log('Got groups with member', member, 'from db:', res.data);
-      return res.data[0];
+      return res.data;
     });
   };
 
