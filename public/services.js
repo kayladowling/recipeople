@@ -222,7 +222,7 @@ angular.module('Recipeoples.services', [])
     return $http({
       method: 'POST',
       url: '/api/groups/',
-      data: recipe
+      data: group
     })
     .then(function(res){
       console.log('Posted new group', group.name, 'to db.');

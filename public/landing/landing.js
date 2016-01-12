@@ -1,27 +1,41 @@
 angular.module('Recipeoples.landing', [])
 
-.controller('LandingController', function($scope, $rootScope, getFactory, CreateGroupFactory) {
-    getFactory.recipesRanked().then(function(recipes) {
-    $scope.recipes = recipes;
-  });
-
-  if ($rootScope.currentUser) {
+.controller('LandingController', function($scope, $rootScope, getFactory, PostFactory) {
+  getFactory.userByToken().then(function(user) {
+    $rootScope.currentUser = user;
     $rootScope.currentUser.groups.forEach(function(groupId) {
       getFactory.groupById(groupId).then(function(group) {
         $scope.groups = group;
       });
     });
-  }
+  });
+
+    getFactory.recipesRanked().then(function(recipes) {
+    $scope.recipes = recipes;
+  });
+
 
   $scope.focusRecipe = function(recipe) {
     $rootScope.focusRecipe = recipe;
+    console.log('Set focus group to', recipe.name);
   };
 
   $scope.focusGroup = function(group) {
     $rootScope.focusGroup = group;
+    console.log('Set focus group to', group.name);
   }
 
-
+  $scope.createGroup = function(groupname) {
+    PostFactory.newGroup({
+      name: groupname,
+      members: [$rootScope.currentUser],
+      recipes: []
+    }).then(function(group) {
+      $Scope.focusGroup(group);
+      $rootScope.currentUser.groups.push(group);
+      PostFactory.joinGroup(group._id);
+    });
+  }
 
  })
 

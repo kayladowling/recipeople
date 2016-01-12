@@ -13,8 +13,7 @@ angular.module('Recipeoples.auth', [])
     AuthFactory.authenticate($scope.user, $scope.signup)
     .then(function (data) {
       $window.localStorage.setItem('com.recipeople', data.token);
-      // $rootScope.currentUser = data.user;
-      // console.log('Set user', $rootScope.currentUser.username);
+      $rootScope.currentUser = data.user;
       $location.path('/');
     })
     .catch(function (error) {
