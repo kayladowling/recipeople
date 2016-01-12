@@ -40,7 +40,6 @@ module.exports = {
           User.create(newUser)
             .then(function(createdUser) {
               var token = util.encodeToken(createdUser);
-              console.log(createdUser);
               res.json({token: token});
             });
         }
