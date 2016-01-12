@@ -32,7 +32,6 @@ module.exports = {
 
     Group.find(params).exec()
       .then(function(group) {
-        console.log(group);
         if (group.length !== 0) {
           console.log('Group already exists');
           // fix response type

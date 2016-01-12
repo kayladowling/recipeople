@@ -2,7 +2,6 @@ var jwt = require('jwt-simple');
 
 module.exports = {
   sendResponse: function(req, res, status) {
-    console.log(res.body);
     res.status(status).send(res.body);
   },
 

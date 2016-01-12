@@ -35,11 +35,9 @@ module.exports = {
         if (user) {
           next(new Error('User already exists, please log in'));
         } else {
-          console.log('in here');
           newUser.username = username;
           newUser.password = password;
           User.create(newUser, function(createdUser) {
-            console.log('created');
               var token = util.encode(user);
               res.json({token: token});
             });
