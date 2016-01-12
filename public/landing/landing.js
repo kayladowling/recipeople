@@ -1,13 +1,43 @@
 angular.module('Recipeoples.landing', [])
 
-.controller('LandingController', function($scope, $rootScope, getFactory, CreateGroupFactory) {
+.controller('LandingController', function($scope, $rootScope, getFactory, PostFactory) {
+  getFactory.userByToken().then(function(user) {
+    $rootScope.currentUser = user;
+    $rootScope.currentUser.groups.forEach(function(groupId) {
+      getFactory.groupById(groupId).then(function(group) {
+        $scope.groups = group;
+      });
+    });
+  });
 
- // $scope.recipes = getFactory.recipes();
- console.log(getFactory.recipes());
+    getFactory.recipesRanked().then(function(recipes) {
+    $scope.recipes = recipes;
+  });
 
 
+  $scope.focusRecipe = function(recipe) {
+    $rootScope.focusRecipe = recipe;
+    console.log('Set focus group to', recipe.name);
+  };
 
- });
+  $scope.focusGroup = function(group) {
+    $rootScope.focusGroup = group;
+    console.log('Set focus group to', group.name);
+  }
+
+  $scope.createGroup = function(groupname) {
+    PostFactory.newGroup({
+      name: groupname,
+      members: [$rootScope.currentUser],
+      recipes: []
+    }).then(function(group) {
+      $Scope.focusGroup(group);
+      $rootScope.currentUser.groups.push(group);
+      PostFactory.joinGroup(group._id);
+    });
+  }
+
+ })
 
 
 
@@ -84,24 +114,20 @@ angular.module('Recipeoples.landing', [])
  
  // })
  
- // .factory('CreateGroupFactory', function($http) {
- //   var createGroup = function(data) {
- //     return $http({
- //         method: 'POST',
- //         url: '/api/groups',
- //         data: data
- //       })
- //       .then(function(response) {
- //        console.log("From POST: " + response.data);
- //         return response.data;
- //       });
- //   };
- //   return {
- //     createGroup: createGroup
- //   };
+ .factory('CreateGroupFactory', function($http) {
+   var createGroup = function(data) {
+     return $http({
+         method: 'POST',
+         url: '/api/groups',
+         data: data
+       })
+       .then(function(response) {
+        console.log("From POST: " + response.data);
+         return response.data;
+       });
+   };
+   return {
+     createGroup: createGroup
+   };
+});
  
-
-
-
-   // Returns a bunch of recipes.
-  // getFactory.recipes();
