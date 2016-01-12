@@ -5,7 +5,7 @@
   <h2>Recipes</h2>
   <ul>
     <li ng-repeat="recipe in group.recipes">
-      <a href="#/recipe" ng-click="setFocusRecipe(recipe)">{{recipe}}</a>
+      <p ng-click="goToRecipe(recipe)">{{recipe}}</p>
     </li>
   </ul>
 </div>
