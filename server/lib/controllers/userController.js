@@ -38,7 +38,7 @@ module.exports = {
           newUser.username = username;
           newUser.password = password;
           User.create(newUser, function(createdUser) {
-              var token = util.encode(user);
+              var token = util.encodeToken(user);
               res.json({token: token});
             });
         }
