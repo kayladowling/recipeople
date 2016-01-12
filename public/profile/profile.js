@@ -9,11 +9,13 @@ angular.module('Recipeoples.profile', [])
     $scope.user = data;
 
     //once $scope has user data, get recipes and groups for user
-    getFactory.recipesByAuthor($scope.user._id).then(function(recipes){
+    getFactory.recipesByAuthor($scope.user.username).then(function(recipes){
       console.log("getting recipes", recipes);
       $scope.userrecipes = recipes;
     })
-    getFactory.groupsByMember($scope.user._id).then(function(groups){
+
+    getFactory.groupsByMember($scope.user.username).then(function(groups){
+      console.log("username", $scope.user.username);
       console.log("getting groups", groups);
       $scope.usergroups = groups;
     })
@@ -38,14 +40,15 @@ angular.module('Recipeoples.profile', [])
     });
   };
 
-  var goToGroup = function (groupid){
+  var goToGroup = function (name){
    return $http({
     method: 'GET',
-    url: "/api/groups/" + groupid
+    url: "/api/groups/name/" + name
    })
     .then(function(res){
       console.log('goToGroup response data: ', res.data);
-      $location.path('/')
+      $rootScope.focusGroup = res.data[0];
+      $location.path('/group/')
     });
   };
   
