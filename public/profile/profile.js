@@ -45,7 +45,8 @@ angular.module('Recipeoples.profile', [])
    })
     .then(function(res){
       console.log('goToGroup response data: ', res.data);
-      $location.path('/')
+      $rootScope.focusRecipe = res.data[0];
+      $location.path('/group/')
     });
   };
   
