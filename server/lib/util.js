@@ -2,7 +2,9 @@ var jwt = require('jwt-simple');
 
 module.exports = {
   sendResponse: function(req, res, status) {
-    console.log(res.body);
+    if (!Array.isArray(res.body)) {
+      res.body = [res.body];
+    }
     res.status(status).send(res.body);
   },
 

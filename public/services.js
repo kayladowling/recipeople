@@ -23,11 +23,10 @@ angular.module('Recipeoples.services', [])
   var userById = function (userId) {
     return $http({
       method: 'GET',
-      url: '/' // '/api/users/_id/' + userId  // <-- uncomment when ready
+      url: '/api/users/_id/' + userId  // <-- uncomment when ready
     })
     .then(function(res){
       console.log('Got user with id', userId, 'from db:', res.data);
-      return dummyUser;  // <-- delete once path is ready
       return res.data[0];
     });
   };
@@ -37,11 +36,10 @@ angular.module('Recipeoples.services', [])
   var usersByName = function (username) {
     return $http({
       method: 'GET',
-      url: '/' // '/api/users/username/' + username  // <-- uncomment when ready
+      url: '/api/users/username/' + username  // <-- uncomment when ready
     })
     .then(function(res){
       console.log('Got users with username', username, 'from db:', res.data);
-      return [dummyUser];  // <-- delete once path is ready
       return res.data;
     });
   };
@@ -53,7 +51,7 @@ angular.module('Recipeoples.services', [])
     })
     .then(function(res){
       console.log('Got user from db:', res.data);
-      return res.data;
+      return res.data[0];
     });
   };
 

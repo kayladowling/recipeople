@@ -35,28 +35,26 @@ module.exports = {
         if (user) {
           next(new Error('User already exists, please log in'));
         } else {
-          console.log('in here');
           newUser.username = username;
           newUser.password = password;
           User.create(newUser, function(createdUser) {
-            console.log('created');
               var token = util.encode(user);
               res.json({token: token});
             });
         }
     });
   },
-  currentUser: function (req, res, next) {
-    var token = req.headers['x-access-token'];
-    if (!token) {
-      next(new Error('No access token!'));
-    } else {
-      var user = util.decodeToken(req);
-      User.findOne({_id: user._id}).exec()
-        .then(function(foundUser) {
-          res.body = foundUser;
-          util.sendResponse(req, res, 200);
-        });
-    }
+  findUser: function (req, res, next) {
+    var query = {};
+    var field = req.params.prop;
+    var value = req.params.query;
+    if (field && value) query[field] = value;
+    if (!field || !value) query._id = util.decodeToken(req)._id;
+
+    User.findOne(query).exec()
+      .then(function(user) {
+        res.body = user;
+        util.sendResponse(req, res, 200);
+      });
   }
 }

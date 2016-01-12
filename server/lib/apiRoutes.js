@@ -23,7 +23,7 @@ var apiTypes = {
   'get': {
     'recipes': recipeController.findRecipe,
     // api call for /users checks for a token and then sends back data for that user
-    'users': userController.currentUser,
+    'users': userController.findUser,
     'groups': groupController.findGroup
   },
   'post': {
