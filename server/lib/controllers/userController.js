@@ -37,8 +37,9 @@ module.exports = {
         } else {
           newUser.username = username;
           newUser.password = password;
-          User.create(newUser, function(createdUser) {
-              var token = util.encode(user);
+          User.create(newUser)
+            .then(function(createdUser) {
+              var token = util.encodeToken(createdUser);
               res.json({token: token});
             });
         }
@@ -49,6 +50,7 @@ module.exports = {
     var field = req.params.prop;
     var value = req.params.query;
     if (field && value) query[field] = value;
+    console.log(util.decodeToken(req));
     if (!field || !value) query._id = util.decodeToken(req)._id;
 
     User.findOne(query).exec()
