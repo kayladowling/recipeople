@@ -1,13 +1,29 @@
 angular.module('Recipeoples.landing', [])
 
 .controller('LandingController', function($scope, $rootScope, getFactory, CreateGroupFactory) {
+    getFactory.recipesRanked().then(function(recipes) {
+    $scope.recipes = recipes;
+  });
 
- // $scope.recipes = getFactory.recipes();
- console.log(getFactory.recipes());
+  if ($rootScope.currentUser) {
+    $rootScope.currentUser.groups.forEach(function(groupId) {
+      getFactory.groupById(groupId).then(function(group) {
+        $scope.groups = group;
+      });
+    });
+  }
+
+  $scope.focusRecipe = function(recipe) {
+    $rootScope.focusRecipe = recipe;
+  };
+
+  $scope.focusGroup = function(group) {
+    $rootScope.focusGroup = group;
+  }
 
 
 
- });
+ })
 
 
 
@@ -84,24 +100,20 @@ angular.module('Recipeoples.landing', [])
  
  // })
  
- // .factory('CreateGroupFactory', function($http) {
- //   var createGroup = function(data) {
- //     return $http({
- //         method: 'POST',
- //         url: '/api/groups',
- //         data: data
- //       })
- //       .then(function(response) {
- //        console.log("From POST: " + response.data);
- //         return response.data;
- //       });
- //   };
- //   return {
- //     createGroup: createGroup
- //   };
+ .factory('CreateGroupFactory', function($http) {
+   var createGroup = function(data) {
+     return $http({
+         method: 'POST',
+         url: '/api/groups',
+         data: data
+       })
+       .then(function(response) {
+        console.log("From POST: " + response.data);
+         return response.data;
+       });
+   };
+   return {
+     createGroup: createGroup
+   };
+});
  
-
-
-
-   // Returns a bunch of recipes.
-  // getFactory.recipes();
